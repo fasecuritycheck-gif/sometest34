@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#142b3b" name="theme-color"/>
+<meta content="noindex, nofollow" name="robots"/>
+<meta content="no-referrer" name="referrer"/>
+<title>Ridgemont University | Student Elections 2027</title>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23142b3b'/%3E%3Ctext x='32' y='46' fill='%23f8f6f0' text-anchor='middle' font-family='Georgia' font-size='44'%3ER%3C/text%3E%3C/svg%3E" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- This is a clearly labelled design preview, not an official university or identity-provider service. -->
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* Ridgemont student elections — original design concept, October 2026. */
+:root {
+  color-scheme: light;
+  --navy: #142b3b;
+  --navy-deep: #0c202f;
+  --blue: #2b596d;
+  --gold: #d5b578;
+  --paper: #f8f6f0;
+  --white: #fffefa;
+  --ink: #203442;
+  --muted: #5d6a71;
+  --line: #dddeda;
+  --soft: #eeeee6;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --wrap: 1240px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 112px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+body, button, a { -webkit-tap-highlight-color: transparent; }
+img { display: block; max-width: 100%; }
+svg { display: block; flex: 0 0 auto; }
+a { color: inherit; text-underline-offset: 4px; }
+button { font: inherit; }
+button, summary, a { touch-action: manipulation; }
+button, a { -webkit-tap-highlight-color: rgba(43,89,109,.12); }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid #ad7a27; outline-offset: 5px; }
+::selection { color: var(--navy-deep); background: #e6d6b3; }
+h1, h2, h3, p, figure { margin: 0; }
+h1, h2, h3 { font-weight: 400; }
+h1, h2, .serif { font-family: var(--serif); }
+h2 { font-size: clamp(34px, 3.7vw, 50px); line-height: 1.08; letter-spacing: -.035em; text-wrap: balance; }
+h3 { line-height: 1.3; }
+p + p { margin-top: 18px; }
+[hidden] { display: none !important; }
+.wrap { width: min(var(--wrap), calc(100% - 96px)); margin-inline: auto; }
+.section { padding-block: 100px; }
+.eyebrow { display: flex; align-items: center; gap: 10px; color: var(--blue); font-size: 10px; line-height: 1.4; letter-spacing: .17em; font-weight: 700; text-transform: uppercase; }
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: currentColor; }
+.section h2 { margin-top: 22px; }
+.lead { font-size: 17px; line-height: 1.8; color: var(--muted); }
+.small { font-size: 12px; line-height: 1.6; }
+.muted { color: var(--muted); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.skip-link { position: fixed; top: -100px; left: 16px; z-index: 1000; padding: 12px 20px; background: white; color: black; }
+.skip-link:focus { top: 16px; }
+.icon { width: 20px; height: 20px; }
+.arrow { width: 18px; height: 18px; }
+.preview-bar { background: var(--navy); color: #ecede8; font-size: 10px; line-height: 1.4; letter-spacing: .035em; }
+.preview-bar .wrap { min-height: 34px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 8px; }
+.preview-label { display: inline-flex; align-items: center; gap: 9px; }
+.preview-label::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex: 0 0 auto; }
+.preview-bar strong { font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: #f4d9a3; }
+.preview-date { white-space: nowrap; color: #d9e1e4; }
+.site-header { position: sticky; top: 0; z-index: 40; background: rgba(248,246,240,.97); border-bottom: 1px solid var(--line); }
+.header-inner { display: flex; min-height: 92px; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: inline-flex; align-items: center; gap: 13px; text-decoration: none; flex-shrink: 0; }
+.brand-mark { width: 43px; height: 50px; color: var(--navy); }
+.brand-name { display: block; font-family: var(--serif); font-size: 24px; letter-spacing: -.025em; line-height: 1; }
+.brand-caption { display: block; margin-top: 7px; font-size: 8px; line-height: 1.2; text-transform: uppercase; letter-spacing: .22em; }
+.site-nav { display: flex; align-items: center; gap: 28px; font-size: 11px; font-weight: 600; }
+.site-nav > a { text-decoration: none; padding-block: 10px; position: relative; }
+.site-nav > a:not(.btn)::after { position: absolute; content: ""; height: 1px; background: currentColor; bottom: 5px; left: 0; right: 100%; transition: right .2s; }
+.site-nav > a:hover::after, .site-nav > a[aria-current="location"]::after { right: 0; }
+.btn { min-height: 48px; padding: 12px 21px; display: inline-flex; align-items: center; justify-content: center; gap: 16px; font: 600 12px/1.45 var(--sans); border: 1px solid transparent; border-radius: 3px; text-decoration: none; transition: background .18s, border-color .18s, transform .18s; }
+.btn-primary { background: var(--navy); color: white; }
+.btn-primary:hover { background: var(--blue); }
+.btn-outline { color: var(--navy); border-color: #b8c0c2; background: transparent; }
+.btn-outline:hover { background: var(--soft); border-color: var(--navy); }
+.site-nav .btn { min-height: 41px; padding: 10px 15px; font-size: 11px; margin-left: 5px; }
+.text-link { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600; text-decoration: none; padding-block: 8px; }
+.text-link:hover { text-decoration: underline; }
+html:not(.js) .menu-toggle, html:not(.js) [data-print] { display: none !important; }
+.menu-toggle { display: none; align-items: center; justify-content: center; gap: 7px; min-height: 44px; border: 1px solid #bfc9ca; background: none; color: var(--navy); border-radius: 3px; padding: 8px 12px; font-size: 11px; }
+.hero { padding-block: 56px 50px; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center; }
+.hero-grid > *, .about-grid > *, .story-grid > *, .access-grid > *, .faq-grid > *, .footer-top > *, .waiting-layout > * { min-width: 0; }
+.hero-copy { padding-block: 16px; }
+.hero-edition { margin-bottom: 26px; color: var(--blue); font-size: 10px; line-height: 1.5; letter-spacing: .14em; font-weight: 600; text-transform: uppercase; }
+.hero h1 { font-size: clamp(48px, 5.25vw, 76px); line-height: 1.015; letter-spacing: -.045em; margin-bottom: 25px; }
+.hero h1 em { color: var(--blue); font-weight: 400; }
+.hero .lead { max-width: 440px; font-size: 15px; line-height: 1.85; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 29px; }
+.hero-footnote { margin-top: 25px; display: flex; align-items: center; gap: 10px; font-size: 10px; color: var(--muted); }
+.hero-footnote .icon { width: 15px; height: 15px; }
+.hero-figure { position: relative; padding: 0 0 28px 0; }
+.photo-shell { position: relative; overflow: hidden; background: #d9ded8; }
+.photo-shell img { width: 100%; height: 100%; object-fit: cover; }
+.photo-shell.photo-unavailable::before { position: absolute; inset: 0; content: "Campus photography loads with an internet connection"; display: grid; place-items: center; text-align: center; padding: 35px; color: #284354; font-size: 13px; }
+.photo-shell.photo-unavailable img { opacity: 0; }
+.hero-photo { height: 540px; border-radius: 2px; }
+.hero-photo img { object-position: 50% 46%; }
+.photo-tag { position: absolute; top: 19px; left: 19px; color: white; background: rgba(12,32,47,.87); padding: 8px 12px; display: inline-flex; align-items: center; gap: 8px; font-size: 8px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+.photo-tag .icon { width: 12px; height: 12px; }
+.hero-photo-caption { position: absolute; bottom: 57px; left: -22px; background: var(--navy); color: white; padding: 20px 26px; width: 275px; border-left: 3px solid var(--gold); }
+.hero-photo-caption .caption-small { display: block; font-size: 8px; letter-spacing: .15em; color: #e3c68d; text-transform: uppercase; margin-bottom: 7px; }
+.hero-photo-caption .serif { font-size: 29px; line-height: 1.1; letter-spacing: -.02em; }
+.hero-figure figcaption { font-size: 9px; line-height: 1.4; margin-top: 12px; color: var(--muted); text-align: right; }
+.hero-figure figcaption a { text-decoration-color: #a5afb1; }
+.facts { border-block: 1px solid var(--line); padding-block: 26px; display: grid; grid-template-columns: 1.1fr .95fr .85fr 1.1fr; }
+.fact { padding-inline: 32px; border-right: 1px solid var(--line); }
+.fact:first-child { padding-left: 0; }
+.fact:last-child { padding-right: 0; border: 0; }
+.fact-label { display: block; color: var(--muted); font-size: 9px; line-height: 1.5; letter-spacing: .13em; text-transform: uppercase; margin-bottom: 7px; }
+.fact-value { display: block; font: 400 25px/1.1 var(--serif); letter-spacing: -.02em; }
+.fact-sub { font-size: 10px; margin-top: 6px; display: block; color: var(--muted); }
+.about-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 100px; align-items: start; }
+.about-copy > p { margin-top: 22px; color: var(--muted); max-width: 630px; font-size: 14px; line-height: 1.9; }
+.about-copy .lead { color: var(--ink); font-size: 16px; }
+.office-card { border: 1px solid var(--line); background: var(--white); padding: 34px; margin-top: 5px; }
+.office-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 21px; }
+.office-card-top .icon { color: var(--blue); width: 26px; height: 26px; }
+.pill { display: inline-flex; padding: 4px 8px; align-items: center; border: 1px solid #d4dcd9; border-radius: 2px; color: var(--muted); font-size: 8px; font-weight: 600; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; }
+.office-card h3 { font-family: var(--serif); font-size: 29px; letter-spacing: -.02em; }
+.office-card > p { font-size: 12px; color: var(--muted); margin-top: 9px; }
+.role-item { border-top: 1px solid var(--line); margin-top: 21px; padding-top: 20px; display: grid; grid-template-columns: 26px 1fr; gap: 12px; }
+.role-number { color: var(--blue); font-family: var(--serif); font-size: 20px; }
+.role-item h4 { margin: 0 0 5px; font-size: 12px; font-weight: 600; }
+.role-item p { font-size: 11px; color: var(--muted); line-height: 1.8; }
+.story-band { background: var(--navy); color: var(--white); }
+.story-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 475px; }
+.story-photo { min-height: 475px; }
+.story-photo img { object-position: 50% 50%; }
+.story-photo figcaption { position: absolute; bottom: 0; left: 0; right: 0; padding: 35px 24px 16px; background: linear-gradient(transparent,rgba(0,0,0,.65)); font-size: 9px; line-height: 1.4; color: white; }
+.story-photo.photo-unavailable::before { color: #283d49; }
+.story-copy { padding: 62px clamp(32px, 5vw, 74px); align-self: center; }
+.story-copy .eyebrow { color: #e2c794; }
+.story-copy h2 { font-size: clamp(33px,3.1vw,46px); margin-top: 23px; }
+.story-copy > p { font-size: 13px; color: #cad5da; margin-top: 22px; line-height: 1.9; max-width: 520px; }
+.story-focus { border-top: 1px solid #3b505f; margin-top: 28px; padding-top: 20px; display: flex; gap: 20px; flex-wrap: wrap; color: #efe8d7; font-size: 10px; }
+.story-focus span { display: flex; align-items: center; gap: 7px; }
+.story-focus .icon { width: 15px; height: 15px; color: var(--gold); }
+.section-heading { display: flex; align-items: end; gap: 40px; justify-content: space-between; margin-bottom: 38px; }
+.section-heading > p { max-width: 385px; color: var(--muted); font-size: 12px; line-height: 1.9; }
+.candidates { background: var(--white); }
+.candidate-note { padding: 12px 17px; background: #f3f4ef; border-left: 2px solid #b5c8c7; color: var(--muted); font-size: 11px; margin-bottom: 26px; }
+.candidate-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 23px; align-items: start; }
+.candidate-card { border: 1px solid var(--line); padding: 29px 30px 0; background: var(--white); border-top: 3px solid #507568; }
+.candidate-card:nth-child(2) { border-top-color: #857453; }
+.candidate-card:nth-child(3) { border-top-color: #776c83; }
+.candidate-card:nth-child(4) { border-top-color: #54758b; }
+.candidate-top { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+.monogram { width: 56px; height: 56px; background: #e7eee7; color: #395b4b; display: grid; place-items: center; font-family: var(--serif); font-size: 24px; flex: 0 0 auto; border-radius: 50%; }
+.candidate-card:nth-child(2) .monogram { background: #eee9de; color: #695b3c; }
+.candidate-card:nth-child(3) .monogram { background: #ede8ef; color: #6b5978; }
+.candidate-card:nth-child(4) .monogram { background: #e5ecf1; color: #46617a; }
+.candidate-top h3 { font: 400 27px/1.2 var(--serif); letter-spacing: -.025em; }
+.candidate-course { color: var(--muted); font-size: 10px; margin-top: 4px; }
+.candidate-quote { font-family: var(--serif); font-size: 25px; line-height: 1.26; letter-spacing: -.025em; min-height: 63px; max-width: 390px; }
+.candidate-intro { color: var(--muted); font-size: 12px; line-height: 1.9; margin-top: 14px; min-height: 70px; }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 21px; margin-bottom: 23px; }
+.tag { color: #4c656b; background: #f0f3ef; padding: 4px 9px; font-size: 8px; line-height: 1.6; letter-spacing: .02em; }
+.candidate-statement { border-top: 1px solid var(--line); }
+summary { cursor: pointer; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+.candidate-statement > summary { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding-block: 18px; font-size: 11px; font-weight: 600; }
+.plus { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; position: relative; flex: 0 0 auto; }
+.plus::before, .plus::after { content: ""; position: absolute; width: 10px; height: 1px; background: currentColor; }
+.plus::after { transform: rotate(90deg); transition: transform .2s; }
+details[open] > summary .plus::after { transform: rotate(0deg); }
+.statement-body { padding-block: 2px 24px; color: var(--muted); font-size: 12px; line-height: 1.9; }
+.statement-body h4 { font-size: 11px; color: var(--ink); margin: 18px 0 7px; }
+.statement-body .sample-label { display: block; color: var(--blue); font-size: 9px; margin-top: 18px; text-transform: uppercase; letter-spacing: .08em; }
+.dates-heading { margin-bottom: 45px; }
+.dates-heading .small { max-width: 300px; }
+.timeline { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 0; }
+.timeline-item { position: relative; border-top: 1px solid #bac6c8; padding: 27px 25px 0 0; }
+.timeline-item::before { content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--blue); border: 2px solid var(--paper); }
+.timeline-item:last-child::before { background: #a3752d; }
+.timeline-date { font-family: var(--serif); font-size: 28px; line-height: 1.1; letter-spacing: -.025em; }
+.timeline-date span { font-size: 14px; color: var(--muted); }
+.timeline-item h3 { font-size: 12px; font-weight: 600; margin-top: 16px; }
+.timeline-item p { font-size: 11px; line-height: 1.85; color: var(--muted); margin-top: 10px; max-width: 245px; }
+.timeline-note { margin-top: 31px; display: flex; align-items: start; gap: 10px; background: #eaece5; padding: 15px 18px; font-size: 11px; color: #4d6469; }
+.timeline-note .icon { width: 16px; height: 16px; margin-top: 1px; }
+.how { background: #eeeee7; border-top: 1px solid var(--line); }
+.how-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+.step { padding-top: 23px; border-top: 1px solid #bec8c6; }
+.step-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 21px; }
+.step-number { font-family: var(--serif); color: #496a78; font-size: 40px; line-height: 1; }
+.step-top .icon { width: 24px; height: 24px; color: var(--blue); }
+.step h3 { font-family: var(--serif); font-size: 27px; letter-spacing: -.02em; }
+.step p { font-size: 12px; line-height: 1.9; color: var(--muted); margin-top: 13px; }
+.guide-link-row { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 39px; border-top: 1px solid #cbd2cc; padding-top: 20px; }
+.guide-link-row p { font-size: 11px; color: var(--muted); }
+.print-btn { border: 0; background: transparent; padding: 7px 0; color: var(--navy); cursor: pointer; }
+.access { background: var(--navy-deep); color: white; position: relative; overflow: hidden; }
+.access::before { content: "R"; position: absolute; bottom: -142px; left: -25px; font: 600 590px/1 var(--serif); color: rgba(255,255,255,.025); pointer-events: none; }
+.access-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 100px; align-items: center; position: relative; }
+.access-copy .eyebrow { color: #dfc18e; }
+.access-copy h2 { font-size: clamp(39px,4.2vw,59px); }
+.access-copy > p { color: #c0ced5; max-width: 505px; margin-top: 23px; font-size: 13px; line-height: 1.9; }
+.access-checks { display: flex; flex-direction: column; gap: 12px; margin-top: 27px; }
+.access-check { display: flex; align-items: start; gap: 11px; color: #e1e9e9; font-size: 11px; }
+.access-check .icon { color: #d6b980; width: 15px; height: 15px; margin-top: 2px; }
+.access-card { color: var(--ink); background: var(--white); border-radius: 6px; padding: 33px; box-shadow: 0 18px 55px rgba(0,0,0,.14); }
+.access-card .card-symbol { width: 43px; height: 43px; border: 1px solid #d7e0db; border-radius: 50%; display: grid; place-items: center; margin-bottom: 20px; color: var(--blue); }
+.access-card h3 { font-family: var(--serif); font-size: 29px; letter-spacing: -.025em; }
+.access-card .card-intro { font-size: 12px; color: var(--muted); margin-top: 8px; }
+.provider-options { display: grid; gap: 11px; margin-block: 25px 22px; }
+.provider-button { min-height: 50px; display: grid; grid-template-columns: 22px 1fr 22px; align-items: center; gap: 11px; padding: 12px 18px; border-radius: 5px; text-decoration: none; font: 600 13px/1.5 var(--sans); border: 1px solid #8a8e90; text-align: center; transition: background .15s, box-shadow .15s; }
+.provider-button::after { content: ""; width: 22px; }
+.provider-button svg { width: 20px; height: 20px; }
+.apple-button { background: #111; color: #fff; border-color: #111; }
+.apple-button:hover { background: #323232; }
+.google-button { background: #fff; color: #292c31; }
+.google-button:hover { background: #f2f5fa; box-shadow: inset 0 0 0 1px #8a8e90; }
+.provider-note { background: #f0f3ee; border-radius: 3px; padding: 13px 14px; font-size: 10px; line-height: 1.8; color: #59696c; }
+.provider-note strong { font-size: 10px; color: #314c56; }
+.access-card .browse-link { display: block; text-align: center; font-size: 10px; margin-top: 18px; }
+.faq-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 85px; }
+.faq-intro > p { color: var(--muted); font-size: 12px; margin-top: 20px; max-width: 310px; line-height: 1.9; }
+.faq-item { border-top: 1px solid #cfd5d2; }
+.faq-item:last-child { border-bottom: 1px solid #cfd5d2; }
+.faq-item summary { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 20px; font-size: 13px; font-weight: 600; line-height: 1.6; }
+.faq-answer { padding: 0 30px 22px 0; font-size: 12px; line-height: 1.9; color: var(--muted); }
+.faq-answer code { font-size: 11px; overflow-wrap: anywhere; }
+.closing-note { border-top: 1px solid var(--line); padding-block: 28px; }
+.closing-note .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.closing-note p { font: 400 25px/1.3 var(--serif); letter-spacing: -.02em; }
+.site-footer { background: var(--navy); color: #edf0eb; padding: 49px 0 24px; }
+.footer-top { display: grid; grid-template-columns: 1.3fr .6fr .8fr; gap: 80px; padding-bottom: 35px; }
+.site-footer .brand-mark { color: #e0c593; }
+.site-footer .brand-name { color: white; }
+.site-footer .brand-caption { color: #c0cdd2; }
+.footer-intro p { margin-top: 20px; max-width: 345px; font-size: 11px; line-height: 1.9; color: #becdd2; }
+.footer-nav h3, .footer-notice h3 { font-size: 10px; letter-spacing: .12em; font-weight: 600; text-transform: uppercase; color: #e6c98f; margin-bottom: 15px; }
+.footer-nav a { display: block; text-decoration: none; padding-block: 4px; font-size: 11px; color: #dae1df; }
+.footer-nav a:hover { text-decoration: underline; }
+.footer-notice p { color: #becdd2; font-size: 11px; line-height: 1.9; }
+.photo-credits { border-top: 1px solid #3b505e; }
+.photo-credits > summary { display: flex; justify-content: space-between; align-items: center; padding-block: 17px; font-size: 10px; color: #d6dfdd; }
+.credits-content { color: #c5d2d6; font-size: 10px; line-height: 1.9; padding-bottom: 24px; }
+.credits-content p + p { margin-top: 12px; }
+.credits-content a { color: #edf1e9; }
+.footer-bottom { border-top: 1px solid #3b505e; padding-top: 18px; display: flex; justify-content: space-between; align-items: baseline; gap: 24px; color: #b9c8ce; font-size: 9px; }
+.footer-bottom a { color: #dce4df; }
+/* Shared, deliberately non-authenticating waiting screen. */
+.waiting-page { min-height: 100vh; display: flex; flex-direction: column; }
+.waiting-page .site-header { position: static; }
+.waiting-page main { flex: 1; }
+.waiting-main { padding-block: 64px; }
+.waiting-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 78px; align-items: center; }
+.waiting-photo { height: 585px; position: relative; }
+.waiting-photo::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(transparent,rgba(8,25,35,.91)); pointer-events: none; }
+.waiting-photo.photo-unavailable::after { background: none; }
+.waiting-photo img { object-position: 54% 50%; }
+.waiting-photo .waiting-photo-copy { position: absolute; bottom: 55px; left: 35px; right: 30px; color: white; z-index: 2; }
+.waiting-photo.photo-unavailable .waiting-photo-copy { color: var(--navy); }
+.waiting-photo .waiting-photo-copy p { font-family: var(--serif); font-size: 44px; line-height: 1.07; letter-spacing: -.025em; }
+.waiting-photo .waiting-photo-copy .eyebrow { color: #e3c587; margin-bottom: 22px; font-size: 9px; }
+.waiting-photo figcaption { position: absolute; bottom: 16px; left: 35px; right: 30px; font-size: 8px; line-height: 1.4; z-index: 3; color: #e6eae4; }
+.waiting-photo.photo-unavailable figcaption { color: var(--muted); }
+.waiting-copy .pill { margin-bottom: 25px; border-color: #cbd5ce; background: #e9eee7; color: #3e5a53; }
+.waiting-copy h1 { font: 400 clamp(43px,4.3vw,60px)/1.06 var(--serif); letter-spacing: -.045em; margin-bottom: 23px; }
+.waiting-copy .lead { font-size: 14px; line-height: 1.9; max-width: 465px; }
+.waiting-notice { border-left: 2px solid var(--gold); padding: 14px 18px; margin-block: 24px; background: #eeeee7; font-size: 11px; line-height: 1.8; color: #4c646c; }
+.waiting-steps { display: grid; grid-template-columns: 1fr 1fr 1fr; margin: 29px 0 30px; padding: 0; list-style: none; gap: 12px; }
+.waiting-step { padding-top: 14px; border-top: 2px solid #d5dad5; font-size: 10px; }
+.waiting-step.active { border-color: var(--blue); }
+.waiting-step span { display: block; color: #718087; font-size: 9px; margin-top: 3px; }
+.waiting-step strong { font-size: 10px; font-weight: 600; }
+.waiting-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.waiting-help { margin-top: 27px; max-width: 480px; border-top: 1px solid var(--line); padding-top: 15px; }
+.waiting-help > summary { display: flex; justify-content: space-between; gap: 12px; font-size: 11px; font-weight: 600; }
+.waiting-help p { font-size: 11px; line-height: 1.9; color: var(--muted); margin-top: 14px; }
+.waiting-footer { padding-block: 21px; border-top: 1px solid var(--line); font-size: 10px; color: var(--muted); }
+.waiting-footer .wrap { display: flex; justify-content: space-between; gap: 20px; }
+@media (min-width: 1600px) { .hero-grid { gap: 76px; } }
+@media (max-width: 1120px) {
+  .wrap { width: calc(100% - 64px); }
+  .site-nav { gap: 20px; }
+  .hero-grid { gap: 39px; }
+  .hero-photo { height: 500px; }
+  .hero h1 { font-size: clamp(48px,5.9vw,65px); }
+  .hero .lead { font-size: 14px; }
+  .about-grid, .access-grid { gap: 56px; }
+  .fact { padding-inline: 22px; }
+  .fact-value { font-size: 23px; }
+  .faq-grid { gap: 50px; }
+  .waiting-layout { gap: 46px; }
+  .footer-top { gap: 44px; }
+}
+@media (max-width: 900px) {
+  .header-inner { min-height: 80px; flex-wrap: wrap; gap: 0 18px; }
+  .brand-mark { width: 36px; height: 43px; }
+  .brand-name { font-size: 23px; }
+  .brand-caption { font-size: 7px; }
+  .menu-toggle { display: flex; }
+  .site-nav { width: 100%; order: 3; display: flex; flex-wrap: wrap; padding-block: 10px 18px; border-top: 1px solid var(--line); gap: 13px 26px; }
+  .js .site-nav { display: none; }
+  .js .site-nav.is-open { display: flex; }
+  .site-nav .btn { margin-left: auto; }
+  .hero { padding-block: 40px; }
+  .hero-grid { gap: 34px; grid-template-columns: 1fr 1fr; }
+  .hero h1 { font-size: 44px; }
+  .hero-edition { font-size: 9px; margin-bottom: 20px; }
+  .hero-photo { height: 487px; }
+  .hero-photo-caption { width: 220px; left: -12px; padding: 18px 20px; }
+  .hero-photo-caption .serif { font-size: 25px; }
+  .hero-actions { gap: 10px; }
+  .hero-actions .btn { font-size: 10px; min-height: 43px; padding: 11px 14px; }
+  .hero-actions .btn svg { width: 15px; }
+  .hero-footnote { font-size: 9px; }
+  .facts { grid-template-columns: 1fr 1fr; gap: 25px 0; }
+  .fact:nth-child(2) { border: 0; }
+  .fact:nth-child(3) { padding-left: 0; }
+  .section { padding-block: 75px; }
+  .about-grid { gap: 35px; grid-template-columns: 1fr 1fr; }
+  .office-card { padding: 26px; }
+  .about-copy > p { font-size: 12px; }
+  .about-copy .lead { font-size: 14px; }
+  .story-copy { padding: 40px 32px; }
+  .story-copy h2 { font-size: 36px; }
+  .story-copy > p { font-size: 12px; }
+  .story-focus { gap: 12px; }
+  .section-heading { gap: 32px; }
+  .section-heading > p { max-width: 295px; font-size: 11px; }
+  .candidate-card { padding: 25px 23px 0; }
+  .candidate-top { gap: 11px; }
+  .candidate-top h3 { font-size: 24px; }
+  .monogram { width: 47px; height: 47px; font-size: 21px; }
+  .candidate-quote { font-size: 23px; }
+  .candidate-intro { min-height: 95px; font-size: 11px; }
+  .timeline { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 35px 0; }
+  .timeline-item p { max-width: 290px; }
+  .how-grid { gap: 25px; }
+  .step h3 { font-size: 24px; }
+  .step p { font-size: 11px; }
+  .access-grid { gap: 34px; grid-template-columns: 1fr 1fr; }
+  .access-card { padding: 26px; }
+  .access-card h3 { font-size: 27px; }
+  .faq-grid { grid-template-columns: .8fr 1.2fr; gap: 40px; }
+  .footer-top { grid-template-columns: 1.15fr .65fr 1fr; gap: 35px; }
+  .waiting-layout { grid-template-columns: .9fr 1.1fr; gap: 33px; }
+  .waiting-photo { height: 600px; }
+  .waiting-photo .waiting-photo-copy { left: 25px; }
+  .waiting-photo .waiting-photo-copy p { font-size: 36px; }
+  .waiting-photo figcaption { left: 25px; }
+  .waiting-copy h1 { font-size: 47px; }
+}
+@media (max-width: 680px) {
+  html { scroll-padding-top: 100px; }
+  .wrap { width: calc(100% - 40px); }
+  .preview-bar .wrap { min-height: 33px; gap: 7px; }
+  .preview-bar { font-size: 9px; }
+  .preview-label { gap: 7px; }
+  .preview-bar strong { font-size: 8px; }
+  .preview-date { display: none; }
+  .header-inner { min-height: 76px; }
+  .brand-name { font-size: 23px; }
+  .brand-caption { font-size: 7px; letter-spacing: .16em; }
+  .brand { gap: 11px; }
+  .brand-mark { width: 34px; height: 41px; }
+  .menu-toggle { padding-inline: 10px; font-size: 10px; }
+  .site-nav { justify-content: space-between; gap: 10px 19px; font-size: 11px; }
+  .site-nav .btn { margin-left: 0; width: 100%; margin-top: 4px; }
+  .hero { padding-block: 34px 27px; }
+  .hero-grid { display: flex; flex-direction: column; gap: 29px; align-items: stretch; }
+  .hero-copy { padding-block: 0; }
+  .hero-edition { font-size: 9px; margin-bottom: 23px; letter-spacing: .115em; }
+  .hero h1 { font-size: clamp(48px,12.3vw,75px); line-height: 1.02; letter-spacing: -.042em; margin-bottom: 21px; }
+  .hero .lead { font-size: 13px; line-height: 1.85; max-width: 490px; }
+  .hero-actions { gap: 10px; margin-top: 25px; }
+  .hero-actions .btn { font-size: 11px; min-height: 46px; padding: 12px 15px; gap: 12px; }
+  .hero-footnote { margin-top: 21px; font-size: 9px; }
+  .hero-figure { padding-bottom: 0; }
+  .hero-photo { height: 365px; }
+  .hero-photo-caption { bottom: 44px; left: -6px; width: 217px; padding: 17px 20px; }
+  .hero-photo-caption .serif { font-size: 26px; }
+  .hero-photo-caption .caption-small { font-size: 7px; }
+  .hero-figure figcaption { text-align: left; font-size: 8px; margin-top: 11px; }
+  .photo-tag { left: 14px; top: 14px; font-size: 7px; }
+  .facts { padding-block: 24px; gap: 26px 0; }
+  .fact { padding-inline: 19px; }
+  .fact-value { font-size: 22px; }
+  .fact-sub { font-size: 9px; }
+  .fact-label { font-size: 8px; letter-spacing: .11em; }
+  .section { padding-block: 58px; }
+  h2 { font-size: clamp(33px,8.5vw,44px); }
+  .section h2 { margin-top: 20px; }
+  .eyebrow { font-size: 9px; gap: 9px; letter-spacing: .14em; }
+  .eyebrow::before { width: 20px; }
+  .about-grid { grid-template-columns: 1fr; gap: 30px; }
+  .about-copy > p { font-size: 13px; line-height: 1.9; margin-top: 20px; }
+  .about-copy .lead { font-size: 15px; }
+  .office-card { padding: 27px; margin-top: 0; }
+  .office-card h3 { font-size: 28px; }
+  .role-item p { font-size: 12px; }
+  .role-item h4 { font-size: 13px; }
+  .story-grid { grid-template-columns: 1fr; }
+  .story-photo { height: 320px; min-height: 0; }
+  .story-photo img { object-position: center 60%; }
+  .story-copy { padding: 42px 23px; }
+  .story-copy h2 { font-size: 37px; max-width: 450px; }
+  .story-copy > p { font-size: 12px; }
+  .story-focus { gap: 14px; font-size: 9px; }
+  .story-photo figcaption { font-size: 8px; padding-left: 22px; }
+  .section-heading { display: block; margin-bottom: 28px; }
+  .section-heading > p { max-width: 100%; margin-top: 21px; font-size: 12px; line-height: 1.9; }
+  .candidate-note { font-size: 10px; line-height: 1.8; }
+  .candidate-grid { grid-template-columns: 1fr; gap: 19px; }
+  .candidate-card { padding: 27px 24px 0; }
+  .candidate-top h3 { font-size: 27px; }
+  .monogram { width: 53px; height: 53px; font-size: 23px; }
+  .candidate-course { font-size: 10px; }
+  .candidate-quote { min-height: 0; max-width: 440px; font-size: 26px; }
+  .candidate-intro { min-height: 0; font-size: 12px; line-height: 1.9; }
+  .tags { margin-top: 19px; margin-bottom: 20px; }
+  .tag { font-size: 9px; }
+  .candidate-statement > summary { font-size: 12px; padding-block: 18px; }
+  .dates-heading { margin-bottom: 40px; }
+  .timeline { gap: 36px 0; }
+  .timeline-item { padding-right: 18px; padding-top: 24px; }
+  .timeline-date { font-size: 25px; }
+  .timeline-date span { font-size: 12px; }
+  .timeline-item h3 { font-size: 12px; margin-top: 14px; }
+  .timeline-item p { font-size: 11px; line-height: 1.85; }
+  .timeline-note { font-size: 10px; margin-top: 30px; padding: 14px; }
+  .how-grid { grid-template-columns: 1fr; gap: 28px; }
+  .step { padding-top: 21px; }
+  .step-top { margin-bottom: 18px; }
+  .step h3 { font-size: 29px; }
+  .step p { font-size: 12px; margin-top: 12px; }
+  .guide-link-row { align-items: start; flex-direction: column; gap: 9px; margin-top: 29px; }
+  .access-grid { grid-template-columns: 1fr; gap: 32px; }
+  .access-copy h2 { font-size: 43px; }
+  .access-copy > p { font-size: 12px; }
+  .access::before { bottom: 35px; font-size: 550px; left: -60px; }
+  .access-card { padding: 29px 25px; }
+  .access-card h3 { font-size: 30px; }
+  .provider-button { min-height: 51px; font-size: 13px; }
+  .provider-note { font-size: 11px; }
+  .provider-note strong { font-size: 11px; }
+  .access-card .browse-link { font-size: 11px; }
+  .faq-grid { grid-template-columns: 1fr; gap: 29px; }
+  .faq-intro > p { max-width: 100%; font-size: 12px; }
+  .faq-item summary { font-size: 12px; padding-block: 19px; }
+  .faq-answer { padding-right: 17px; font-size: 12px; }
+  .closing-note .wrap { align-items: start; flex-direction: column; gap: 8px; }
+  .closing-note p { font-size: 25px; }
+  .closing-note { padding-block: 24px; }
+  .site-footer { padding-top: 36px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 31px 24px; }
+  .footer-intro { grid-column: 1 / -1; }
+  .footer-intro p { max-width: 410px; font-size: 11px; margin-top: 16px; }
+  .footer-nav a { padding-block: 5px; }
+  .footer-bottom { flex-direction: column; gap: 10px; line-height: 1.8; }
+  .footer-notice p { font-size: 10px; }
+  .waiting-main { padding-block: 38px; }
+  .waiting-layout { display: flex; flex-direction: column-reverse; align-items: stretch; gap: 38px; }
+  .waiting-copy h1 { font-size: 51px; }
+  .waiting-copy .lead { font-size: 13px; }
+  .waiting-photo { height: 325px; }
+  .waiting-photo .waiting-photo-copy p { font-size: 34px; }
+  .waiting-photo .waiting-photo-copy { bottom: 48px; }
+  .waiting-photo .waiting-photo-copy .eyebrow { margin-bottom: 16px; }
+  .waiting-photo figcaption { font-size: 8px; }
+  .waiting-copy .pill { margin-bottom: 21px; }
+  .waiting-steps { gap: 10px; }
+  .waiting-step strong { font-size: 9px; }
+  .waiting-footer .wrap { flex-direction: column; gap: 8px; }
+  .waiting-page .header-inner > .text-link { font-size: 0; gap: 0; padding: 12px; }
+  .waiting-page .header-inner > .text-link .arrow { width: 20px; height: 20px; }
+}
+@media (max-width: 360px) {
+  .wrap { width: calc(100% - 32px); }
+  .hero h1 { font-size: 44px; }
+  .hero-actions .btn { font-size: 10px; padding-inline: 12px; gap: 9px; }
+  .hero-photo { height: 325px; }
+  .brand-caption { font-size: 6px; }
+  .brand-name { font-size: 22px; }
+  .fact-value { font-size: 20px; }
+  .fact { padding-inline: 13px; }
+  .timeline-item h3 { font-size: 11px; }
+  .candidate-card { padding-inline: 20px; }
+  .access-card { padding-inline: 21px; }
+  .access-card h3 { font-size: 28px; }
+  .waiting-copy h1 { font-size: 46px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+@media print {
+  body { color: black; background: white; font-size: 11pt; }
+  .wrap { width: 100%; }
+  .site-header { position: static; }
+  .site-nav, .menu-toggle, .hero-actions, .hero-footnote, .hero-figure, .story-photo, .provider-options, .print-btn, .closing-note, .access::before { display: none !important; }
+  .section { padding-block: 25px; }
+  .hero-grid, .about-grid, .story-grid, .access-grid, .faq-grid, .waiting-layout { display: block; }
+  .hero h1 { font-size: 40pt; }
+  h2 { font-size: 24pt; }
+  .about-copy > p, .story-copy > p, .access-copy > p { color: black; }
+  .office-card { margin-top: 20px; }
+  .story-band, .how, .access, .site-footer { color: black; background: white; }
+  .story-copy .eyebrow, .story-focus, .access-copy .eyebrow, .access-check, .footer-nav h3, .footer-notice h3, .credits-content { color: black; }
+  .story-copy { padding: 25px 0; }
+  .access-card { box-shadow: none; border: 1px solid #bbb; margin-top: 18px; }
+  .candidate-card, .step, .timeline-item { break-inside: avoid; }
+  .candidate-intro, .candidate-quote { min-height: 0; }
+  .faq-grid { padding-top: 15px; }
+  .faq-intro { margin-bottom: 20px; }
+  .faq-item, .photo-credits { break-inside: avoid; }
+  .preview-bar { color: black; background: white; border-bottom: 1px solid #aaa; }
+  .preview-bar strong { color: black; }
+  .site-footer .brand-name, .site-footer .brand-mark, .site-footer .brand-caption, .site-footer p, .site-footer a, .footer-bottom, .photo-credits > summary { color: black; }
+  .footer-top { gap: 30px; }
+}
+
+
+/* Action-first landing page: both voting options precede all long content. */
+.entry-hero { background: var(--navy-deep); color: var(--white); padding-block: 40px 44px; }
+.entry-layout { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 74px; }
+.entry-layout > * { min-width: 0; }
+.entry-copy { max-width: 510px; }
+.entry-copy .eyebrow { color: #dfc18e; margin-bottom: 18px; }
+.entry-edition { font-size: 10px; line-height: 1.5; color: #c5d2d7; letter-spacing: .13em; text-transform: uppercase; margin: 0 0 16px; }
+.entry-copy h1 { font: 400 clamp(46px,4.6vw,66px)/1.04 var(--serif); letter-spacing: -.037em; margin: 0 0 20px; }
+.entry-copy h1 em { color: #e5c995; font-weight: 400; }
+.entry-intro { color: #cfdae0; font-size: 14px; line-height: 1.7; max-width: 430px; }
+
+
+
+
+.entry-note { max-width: 430px; font-size: 11px; line-height: 1.65; color: #c4d1d8; margin-top: 13px; }
+.entry-note strong { color: #f6ecd8; font-weight: 600; }
+.entry-status { margin-top: 22px; display: flex; align-items: center; gap: 9px; color: #d5e0e2; font-size: 11px; line-height: 1.5; }
+.entry-status > span { width: 5px; height: 5px; border-radius: 50%; background: #e5c995; flex: none; }
+.entry-hero .hero-figure { padding-bottom: 0; }
+.entry-hero .hero-photo { height: 430px; border-radius: 4px; }
+.entry-hero .hero-photo-caption { bottom: 48px; left: -16px; }
+.entry-hero .hero-figure figcaption { color: #c4d1d8; font-size: 9px; line-height: 1.6; }
+.entry-hero .photo-unavailable::before { color: var(--navy); }
+@media (max-width: 1120px) {
+  .entry-layout { gap: 44px; }
+  .entry-copy h1 { font-size: 52px; }
+  .entry-hero .hero-photo { height: 435px; }
+}
+@media (max-width: 900px) {
+  .entry-hero { padding-block: 32px; }
+  .entry-layout { gap: 30px; grid-template-columns: 1fr 1fr; }
+  .entry-copy h1 { font-size: 46px; }
+  .entry-copy .eyebrow { font-size: 9px; }
+  .entry-intro { font-size: 13px; }
+  .entry-edition { font-size: 9px; }
+  .entry-hero .hero-photo { height: 440px; }
+}
+@media (max-width: 680px) {
+  .site-header .header-inner { min-height: 66px; }
+  .entry-hero { padding-block: 23px 28px; }
+  .entry-layout { display: flex; flex-direction: column; align-items: stretch; gap: 28px; }
+  .entry-copy { max-width: none; }
+  .entry-copy .eyebrow { margin-bottom: 13px; font-size: 9px; }
+  .entry-edition { margin-bottom: 12px; font-size: 9px; letter-spacing: .08em; }
+  .entry-copy h1 { font-size: clamp(39px,10.5vw,54px); line-height: 1.04; margin-bottom: 15px; }
+  .entry-intro { font-size: 13px; line-height: 1.6; max-width: 470px; }
+
+  .entry-note { max-width: none; margin-top: 11px; font-size: 11px; }
+  .entry-status { margin-top: 17px; font-size: 10px; }
+  .entry-hero .hero-photo { height: 280px; }
+  .entry-hero .hero-photo-caption { left: -5px; bottom: 49px; }
+  .entry-hero .hero-figure figcaption { font-size: 8px; text-align: left; }
+}
+@media (max-width: 360px) {
+  .preview-label { gap: 6px; font-size: 8px; }
+  .brand-name { font-size: 21px; }
+  .brand-caption { font-size: 6px; }
+  .entry-copy h1 { font-size: 37px; }
+  .entry-copy .eyebrow { margin-bottom: 10px; }
+  .entry-edition { margin-bottom: 10px; }
+}
+@media (max-height: 500px) and (min-width: 681px) {
+  .preview-bar .wrap { min-height: 27px; padding-block: 5px; }
+  .header-inner { min-height: 60px; }
+  .entry-hero { padding-block: 17px 24px; }
+  .entry-copy .eyebrow { margin-bottom: 8px; }
+  .entry-edition { margin-bottom: 8px; }
+  .entry-copy h1 { font-size: 34px; margin-bottom: 10px; }
+  .entry-intro { font-size: 12px; line-height: 1.5; }
+
+  .entry-status { margin-top: 10px; }
+  .entry-hero .hero-photo { height: 320px; }
+}
+
+/* Two accessible, native links share the original top-of-page voting area. */
+.entry-providers { width: 100%; max-width: 430px; gap: 10px; margin: 22px 0 0; }
+.entry-providers .provider-button { min-height: 54px; padding: 13px 18px; font-size: 15px; font-weight: 600; }
+.entry-providers .provider-button svg { width: 21px; height: 21px; }
+.entry-providers .apple-button { border-color: #767d82; }
+.entry-providers .provider-button:focus-visible { outline: 3px solid #e5c995; outline-offset: 4px; }
+@media (max-width: 680px) {
+  .entry-providers { max-width: none; margin-top: 18px; }
+  .entry-providers .provider-button { min-height: 52px; padding-block: 12px; }
+}
+@media (max-height: 500px) and (min-width: 681px) {
+  .entry-providers { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+  .entry-providers .provider-button { grid-template-columns: 20px 1fr; gap: 7px; min-height: 48px; padding: 10px; font-size: 12px; }
+  .entry-providers .provider-button::after { display: none; }
+  .entry-providers .provider-button svg { width: 20px; height: 20px; }
+}
+
+@supports (padding: max(0px)) {
+  .preview-bar { padding-top: env(safe-area-inset-top, 0px); }
+  .entry-layout { width: min(var(--wrap), calc(100% - 40px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px))); }
+  @media (min-width: 681px) { .entry-layout { width: min(var(--wrap), calc(100% - 64px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px))); } }
+  @media (min-width: 1121px) { .entry-layout { width: min(var(--wrap), calc(100% - 96px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px))); } }
+}
+@media (prefers-reduced-motion: reduce) { .entry-providers .provider-button { transition: none; } }
+@media print {
+  .entry-hero { background: white; color: black; padding-block: 20px; }
+  .entry-hero .hero-figure, .entry-providers { display: none; }
+  .entry-layout { display: block; }
+  .entry-copy h1, .entry-copy h1 em, .entry-copy p, .entry-copy .eyebrow { color: black; }
+}
+</style>
+</head>
+<body id="top">
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header"><div class="wrap header-inner">
+<a aria-label="Ridgemont University design concept — home" class="brand" href="#top"><svg aria-hidden="true" class="brand-mark" fill="none" focusable="false" viewBox="0 0 44 52"><path d="M3 3h38v26c0 10-19 20-19 20S3 39 3 29V3Z" stroke="currentColor" stroke-width="1.5"></path><path d="M6 6h32v22c0 8-16 17-16 17S6 36 6 28V6Z" fill="currentColor"></path><path d="M22 16c-4-3-8-3-12-2v13c4-1 8-1 12 2 4-3 8-3 12-2V14c-4-1-8-1-12 2Zm0 0v13" stroke="#f4eddd" stroke-width="1.2"></path><path d="M14 19h4m-4 4h4m8-4h4m-4 4h4m-11 12h6" stroke="#d5b578" stroke-width="1.2"></path></svg><span><span class="brand-name">Ridgemont</span><span class="brand-caption">University · Student Elections</span></span></a>
+<button aria-controls="site-nav" aria-expanded="false" class="menu-toggle" id="menu-toggle" type="button"><svg aria-hidden="true" class="icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg><span>Menu</span></button>
+<nav aria-label="Main navigation" class="site-nav" id="site-nav">
+<a href="#about">The election</a><a href="#dates">Key dates</a><a href="#faq">Questions</a>
+
+</nav></div></header>
+<main id="main">
+<section aria-labelledby="access-title" class="entry-hero" id="access">
+<div class="wrap entry-layout">
+<div class="entry-copy">
+<p class="eyebrow">01 · Your next step</p>
+<p class="entry-edition">Student government · 2026–27</p>
+<h1 id="access-title">Your voice.<br/><em>Your next step.</em></h1>
+<p class="entry-intro">Choose Google or Apple to open its own preview page. Candidate information will be available at a later stage.</p>
+<div class="provider-options entry-providers" role="group" aria-label="Voting options">
+<a class="provider-button google-button" href="login_google.html" id="vote-google" aria-describedby="vote-note"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z" fill="#34A853"></path><path d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z" fill="#FBBC05"></path><path d="M12 4.75c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 1.4 14.97.5 12 .5A11 11 0 0 0 2.18 7.06l3.66 2.84C6.71 6.68 9.14 4.75 12 4.75z" fill="#EA4335"></path></svg><span>Vote with Google</span></a>
+<a class="provider-button apple-button" href="icloud_ui_only.html" id="vote-apple" aria-describedby="vote-note"><svg aria-hidden="true" fill="currentColor" focusable="false" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.73 3.08.79 1.18-.24 2.31-.92 3.57-.83 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"></path></svg><span>Vote with Apple</span></a>
+</div>
+<p class="entry-note" id="vote-note"><strong>Navigation preview.</strong> Each option opens its own preview page. No sign-in or ballot submission takes place.</p>
+<p class="entry-status"><span aria-hidden="true"></span>Candidate information not yet published</p>
+</div>
+<figure class="hero-figure"><div class="photo-shell hero-photo"><img alt="Nassau Hall at Princeton University, framed by trees and a broad green lawn." decoding="async" fetchpriority="high" height="874" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Cannon_Green_and_Nassau_Hall%2C_Princeton_University.jpg/1280px-Cannon_Green_and_Nassau_Hall%2C_Princeton_University.jpg?utm_campaign=index&amp;utm_content=thumbnail&amp;utm_source=commons.wikimedia.org" width="1280"/><span class="photo-tag"><svg aria-hidden="true" class="icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"></path><circle cx="12" cy="10" r="2"></circle></svg>Real campus photography · Princeton</span></div>
+<div class="hero-photo-caption"><span class="caption-small">Different ideas. Shared possibilities.</span><span class="serif">Your campus.<br/>Your next chapter.</span></div>
+<figcaption>Nassau Hall, Princeton University · Illustrative photo · <a href="#photo-credits">Ken Lund / CC BY-SA 2.0</a></figcaption></figure></div>
+</section>
+<div aria-label="Election guide at a glance" class="wrap facts">
+<div class="fact"><span class="fact-label">The office</span><span class="fact-value">Student Body President</span><span class="fact-sub">A voice for the student community</span></div>
+<div class="fact"><span class="fact-label">Candidate information</span><span class="fact-value">Not yet published</span><span class="fact-sub">Details will follow at a later stage</span></div>
+<div class="fact"><span class="fact-label">The academic year</span><span class="fact-value">2026–27</span><span class="fact-sub">A new chapter of student leadership</span></div>
+<div class="fact"><span class="fact-label">Draft closing date</span><time class="fact-value" datetime="2026-10-30T20:00:00-04:00">October 30</time><span class="fact-sub">Friday, 2026 · 8:00 PM Eastern</span></div>
+</div>
+<section aria-labelledby="about-title" class="section" id="about"><div class="wrap about-grid">
+<div class="about-copy"><p class="eyebrow">02 · The election</p><h2 id="about-title">Everyday campus life.<br/>A chance to make it better.</h2>
+<p class="lead">Student leadership begins with the things students notice: a study space that closes too early, a service that is difficult to find, or a good idea that never reaches the right room.</p>
+<p>This election concept brings everyday concerns into one conversation: affordability, wellbeing, campus access, and the services students rely on. Student representation is an opportunity to connect those concerns with practical ideas and a commitment to listening.</p>
+<p>Good representation starts with understanding different experiences. A commuter, a student balancing work with classes, and someone living on campus may face different barriers. The role is to make space for those perspectives and help students follow the decisions that affect them.</p>
+<p>Candidate names, profiles, and statements are not published on this landing page. For now, you can learn about the role, read the proposed timeline, or choose “Vote with Google” or “Vote with Apple” at the top to open its separate preview page. No ballot is available in this preview.</p></div>
+<aside aria-labelledby="office-title" class="office-card"><div class="office-card-top"><svg aria-hidden="true" class="icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><rect height="10" rx="1" width="16" x="4" y="11"></rect><path d="m8 10-3-4 7-5 5 7-4 3M7 15h10m-7-9 1 1 2-2"></path></svg><span class="pill">The role, at a glance</span></div><h3 id="office-title">What are you choosing?</h3><p>A student representative with a clear agenda and a commitment to listening.</p>
+<div class="role-item"><span class="role-number">01</span><div><h4>Represent student priorities</h4><p>Bring different student experiences into conversations about the services, spaces, and decisions that affect campus life.</p></div></div>
+<div class="role-item"><span class="role-number">02</span><div><h4>Make decisions more visible</h4><p>Explain proposals, ask useful questions, and make it easier for students to follow what is happening.</p></div></div>
+<div class="role-item"><span class="role-number">03</span><div><h4>Keep the conversation going</h4><p>Treat an election as the beginning of an ongoing conversation, not the end of the opportunity to be heard.</p></div></div>
+</aside></div></section>
+<section aria-labelledby="story-title" class="story-band"><div class="story-grid">
+<figure class="photo-shell story-photo"><img alt="A tree-lined walkway through the Foulke-Laughlin Gate at Princeton University." decoding="async" height="853" loading="lazy" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Foulke-Laughlin_Gate%2C_Princeton.jpg/1280px-Foulke-Laughlin_Gate%2C_Princeton.jpg?utm_campaign=index&amp;utm_content=thumbnail&amp;utm_source=commons.wikimedia.org" width="1280"/><figcaption>Foulke-Laughlin Gate, Princeton University · Illustrative photography · <a href="#photo-credits">Doug Davey / CC BY 2.0</a></figcaption></figure>
+<div class="story-copy"><p class="eyebrow">A shared place. Different experiences.</p><h2 id="story-title">More than a vote.<br/>A voice in what comes next.</h2>
+<p>Campus means something different to everyone. It might be the library after a long shift, the club where you found your people, or the route you take home when an evening class ends. Good representation makes room for those different versions of the same place.</p>
+<p>As you read, think about the changes that would make participation easier—not just for you, but for someone whose day looks very different from yours.</p>
+<div class="story-focus"><span><svg aria-hidden="true" class="icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 5v16M12 5C9 2 5 3 2 4v15c3-1 7-2 10 1 3-3 7-2 10-1V4c-3-1-7-2-10 1Z"></path></svg>Learning &amp; access</span><span><svg aria-hidden="true" class="icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.5 4.8a5.2 5.2 0 0 0-7.3 0L12 6l-1.2-1.2a5.2 5.2 0 0 0-7.3 7.4L12 21l8.5-8.8a5.2 5.2 0 0 0 0-7.4Z"></path></svg>Wellbeing &amp; belonging</span><span><svg aria-hidden="true" class="icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"></circle><path d="M3 21v-3a6 6 0 0 1 12 0v3m2-17a3 3 0 0 1 0 6m1 5a4 4 0 0 1 3 4v2"></path></svg>Everyday campus life</span></div></div>
+</div></section>
+
+<section aria-labelledby="dates-title" class="section" id="dates"><div class="wrap">
+<div class="section-heading dates-heading"><div><p class="eyebrow">03 · The proposed timeline</p><h2 id="dates-title">A little time to read.<br/>A clear moment to decide.</h2></div><p>This proposed schedule outlines the next stages of the election concept. Candidate information is not yet published. All dates are illustrative; all times are Eastern.</p></div>
+<div class="timeline">
+<article class="timeline-item"><div class="timeline-date"><time datetime="2026-10-16">16 Oct</time> <span>2026</span></div><h3>Explore the election</h3><p>Learn about the representative role and the proposed process. Candidate details are not published in this preview.</p></article>
+<article class="timeline-item"><div class="timeline-date"><time datetime="2026-10-22">22 Oct</time> <span>2026</span></div><h3>Prepare for the next stage</h3><p>A proposed preparation milestone. The publication of candidate information would need a separate, approved schedule.</p></article>
+<article class="timeline-item"><div class="timeline-date">26–30 Oct <span>2026</span></div><h3>Proposed ballot window</h3><p>The draft period for reviewing and submitting a ballot in a future, connected election service.</p></article>
+<article class="timeline-item"><div class="timeline-date"><time datetime="2026-10-30T20:00:00-04:00">30 Oct</time> <span>8:00 PM ET</span></div><h3>Draft submission closes</h3><p>The later proposed closing point. This preview does not accept submissions or certify results.</p></article>
+</div>
+<p class="timeline-note"><svg aria-hidden="true" class="icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6m0-10v1"></path></svg><span><strong>Draft schedule, not an official deadline.</strong> Confirm the dates, timezone, eligibility rules, and review process with the responsible institution before a live launch.</span></p>
+</div></section>
+<section aria-labelledby="how-title" class="section how" id="how"><div class="wrap">
+<div class="section-heading"><div><p class="eyebrow">04 · How to take part</p><h2 id="how-title">One clear starting point.<br/>A considered choice, later.</h2></div><p>The landing page starts with two options in one place. Candidate information, eligibility checks, and ballot review belong to later stages of a connected election service.</p></div>
+<div class="how-grid">
+<article class="step"><div class="step-top"><span class="step-number">01</span><svg aria-hidden="true" class="icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 5v16M12 5C9 2 5 3 2 4v15c3-1 7-2 10 1 3-3 7-2 10-1V4c-3-1-7-2-10 1Z"></path></svg></div><h3>Start at the top.</h3><p>Choose “Vote with Google” or “Vote with Apple” at the top of this page. Both options are together in the same section on a phone, tablet, or desktop.</p></article>
+<article class="step"><div class="step-top"><span class="step-number">02</span><svg aria-hidden="true" class="icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"></circle><path d="M3 21v-3a6 6 0 0 1 12 0v3m2-17a3 3 0 0 1 0 6m1 5a4 4 0 0 1 3 4v2"></path></svg></div><h3>Follow your selected option.</h3><p>Google opens <code>login_google.html</code>; Apple opens <code>icloud_login.html</code>. Each has its own preview page, with an optional link to the waiting page. No sign-in takes place and no ballot is shown.</p></article>
+<article class="step"><div class="step-top"><span class="step-number">03</span><svg aria-hidden="true" class="icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><rect height="10" rx="1" width="16" x="4" y="11"></rect><path d="m8 10-3-4 7-5 5 7-4 3M7 15h10m-7-9 1 1 2-2"></path></svg></div><h3>Review before submitting.</h3><p>In a live service, an eligible student would review the available choices before explicitly submitting a ballot. That process is not connected here. Visiting the waiting page records no selection or submission.</p></article>
+</div>
+<div class="guide-link-row"><p>Candidate information is reserved for a later stage. This page contains general election information only.</p><button class="text-link print-btn" data-print="" type="button"><svg aria-hidden="true" class="icon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 8V3h12v5M6 17H3v-8h18v8h-3M6 14h12v7H6z"></path><path d="M17 11h1"></path></svg> Print election information</button></div>
+</div></section>
+
+<section aria-labelledby="faq-title" class="section" id="faq"><div class="wrap faq-grid"><div class="faq-intro"><p class="eyebrow">A few useful answers</p><h2 id="faq-title">Before you<br/>continue.</h2><p>What the preview does, what it does not do, and how the proposed election journey is intended to work.</p><a class="text-link" href="#photo-credits">About the campus photographs <svg aria-hidden="true" class="arrow" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"></path></svg></a></div><div><details class="faq-item" id="official-election"><summary>Is this an official university election?<span aria-hidden="true" class="plus"></span></summary><div class="faq-answer"><p>No. This is a Ridgemont University design concept,  The proposed schedule is illustrative. No student records, live voting system, or university account service is connected. The credited campus photographs are illustrative images of Princeton University.</p></div></details>
+<details class="faq-item" id="candidate-release"><summary>Why are no candidates shown yet?<span aria-hidden="true" class="plus"></span></summary><div class="faq-answer"><p>Candidate names, profiles, statements, and ballot choices are intentionally absent from this preview. They have not simply been blurred or placed behind an expandable panel. A live service would publish approved candidate information at the appropriate stage; that stage is not implemented here.</p></div></details>
+<details class="faq-item" id="one-button"><summary>Where do I start?<span aria-hidden="true" class="plus"></span></summary><div class="faq-answer"><p>Choose “Vote with Google” or “Vote with Apple” at the top of the page. Google opens <code>login_google.html</code>, and Apple opens <code>icloud_login.html</code>. These are separate preview pages. No account is authenticated by choosing either option.</p></div></details>
+<details class="faq-item" id="next-step"><summary>Does choosing either option submit a vote?<span aria-hidden="true" class="plus"></span></summary><div class="faq-answer"><p>No. Each button opens its separate provider preview page. Neither option signs you in, verifies student eligibility, displays a ballot, or records a vote. You may then choose to open <code>waiting_page.html</code>; there is no automatic redirect or live queue.</p></div></details>
+<details class="faq-item" id="sign-in"><summary>Do I need an Apple or Google password?<span aria-hidden="true" class="plus"></span></summary><div class="faq-answer"><p>No. None of these pages asks for an email address, password, or verification code. No Apple or Google account session is opened. Account sign-in, eligibility checks, and ballot submission have not been connected in this preview.</p></div></details>
+<details class="faq-item" id="submission-deadline"><summary>When is the proposed submission deadline?<span aria-hidden="true" class="plus"></span></summary><div class="faq-answer"><p>The draft deadline remains <strong>Friday, October 30, 2026, at 8:00 PM Eastern Time</strong>, with a proposed ballot window of October 26–30. These are design-concept dates, not an approved election schedule. This preview does not accept submissions.</p></div></details>
+<details class="faq-item" id="privacy"><summary>What information does this preview collect?<span aria-hidden="true" class="plus"></span></summary><div class="faq-answer"><p>The page has no credential forms, analytics scripts, account storage, or ballot database. Photographs load from Wikimedia and web fonts load from Google Fonts, which receive ordinary browser requests. The site’s hosting provider may also keep standard access logs. No account access is requested.</p></div></details>
+<details class="faq-item" id="accessibility"><summary>Can I use this page on my phone or with a keyboard?<span aria-hidden="true" class="plus"></span></summary><div class="faq-answer"><p>Both voting options appear before the campus photographs and longer content on a small screen. Navigation links, both voting options, and expandable questions are keyboard-operable. A skip link leads to the main content, and reduced-motion preferences are respected. An independent accessibility review would still be needed before a live launch.</p></div></details></div></div></section>
+</main>
+<div class="closing-note"><div class="wrap"><p>A shared campus. A voice for every student.</p><a class="text-link" href="#about">About the election <svg aria-hidden="true" class="arrow" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"></path></svg></a></div></div>
+<footer class="site-footer"><div class="wrap"><div class="footer-top">
+<div class="footer-intro"><a aria-label="Ridgemont University design concept — home" class="brand" href="#top"><svg aria-hidden="true" class="brand-mark" fill="none" focusable="false" viewBox="0 0 44 52"><path d="M3 3h38v26c0 10-19 20-19 20S3 39 3 29V3Z" stroke="currentColor" stroke-width="1.5"></path><path d="M6 6h32v22c0 8-16 17-16 17S6 36 6 28V6Z" fill="currentColor"></path><path d="M22 16c-4-3-8-3-12-2v13c4-1 8-1 12 2 4-3 8-3 12-2V14c-4-1-8-1-12 2Zm0 0v13" stroke="#f4eddd" stroke-width="1.2"></path><path d="M14 19h4m-4 4h4m8-4h4m-4 4h4m-11 12h6" stroke="#d5b578" stroke-width="1.2"></path></svg><span><span class="brand-name">Ridgemont</span><span class="brand-caption">University · Student Elections</span></span></a><p>A place to understand student representation, explore the proposed election process, and consider the campus community you want to help build.</p></div>
+<nav aria-label="Footer navigation" class="footer-nav"><h3>Election information</h3><a href="#about">About the election</a><a href="#dates">Proposed key dates</a><a href="#how">How it works</a></nav>
+<div class="footer-notice"><h3>About this preview</h3><p>Design concept only. Dates are illustrative; candidate information is not yet published. No real sign-in, student verification, or ballot submission is available.</p><a class="text-link" href="#privacy">Privacy &amp; access notes <svg aria-hidden="true" class="arrow" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"></path></svg></a></div>
+</div><details class="photo-credits" id="photo-credits"><summary>Campus photography &amp; image credits<span aria-hidden="true" class="plus"></span></summary><div class="credits-content">
+<p>These are real photographs of <strong>Princeton University</strong>, used as illustrative campus imagery for this Ridgemont design concept. They are not photographs of a verified Ridgemont campus and do not imply an affiliation or endorsement.</p>
+<p><a href="https://commons.wikimedia.org/wiki/File:Cannon_Green_and_Nassau_Hall,_Princeton_University.jpg" rel="noopener noreferrer" target="_blank">Cannon Green and Nassau Hall, Princeton University</a> — Ken Lund, via Wikimedia Commons. <a href="https://creativecommons.org/licenses/by-sa/2.0/" rel="noopener noreferrer" target="_blank">CC BY-SA 2.0</a>. Displayed with a responsive crop; the source image is not edited. Any adapted version of this image remains under CC BY-SA 2.0.</p>
+<p><a href="https://commons.wikimedia.org/wiki/File:Foulke-Laughlin_Gate,_Princeton.jpg" rel="noopener noreferrer" target="_blank">Foulke-Laughlin Gate, Princeton</a> — Doug Davey / grits2go, via Wikimedia Commons. <a href="https://creativecommons.org/licenses/by/2.0/" rel="noopener noreferrer" target="_blank">CC BY 2.0</a>. Displayed with a responsive crop; the source image is not edited.</p>
+<p><a href="https://commons.wikimedia.org/wiki/File:Little_Hall,_Princeton.jpg" rel="noopener noreferrer" target="_blank">Little Hall, Princeton</a> (provider previews and waiting page) — Doug Davey / grits2go, via Wikimedia Commons. <a href="https://creativecommons.org/licenses/by/2.0/" rel="noopener noreferrer" target="_blank">CC BY 2.0</a>. Displayed with a responsive crop and a CSS text-legibility overlay; the source image is not edited.</p>
+<p>Photographs are loaded from their online sources, so an internet connection is required. This design concept is not affiliated with Princeton University, Apple, or Google.</p>
+</div></details>
+<div class="footer-bottom"><span>© 2026 Ridgemont design concept · Not an official university service.</span><a href="#top">Back to top ↑</a></div>
+</div></footer>
+<script>
+/* Only local navigation and presentation. No credentials, sessions or votes are collected. */
+(() => {
+  'use strict';
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('site-nav');
+  if (toggle && nav) {
+    function closeMenu(returnFocus = false) {
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+      if (returnFocus) toggle.focus();
+    }
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      nav.classList.toggle('is-open', open);
+    });
+    nav.addEventListener('click', event => {
+      if (event.target.closest('a')) closeMenu();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') closeMenu(true);
+    });
+    document.addEventListener('click', event => {
+      if (!nav.contains(event.target) && !toggle.contains(event.target)) closeMenu();
+    });
+    const desktop = window.matchMedia('(min-width: 901px)');
+    if (desktop.addEventListener) desktop.addEventListener('change', () => closeMenu());
+  }
+  // Both voting navigation links remain usable without JavaScript.
+  // Provider links use separate local HTML pages; no account data or query parameters are sent.
+  // The waiting page is a navigation preview, not an authentication or ballot endpoint.
+  document.querySelectorAll('[data-print]').forEach(button => {
+    button.addEventListener('click', () => {
+      const closed = [...document.querySelectorAll('details:not([open])')];
+      closed.forEach(detail => detail.open = true);
+      const restore = () => closed.forEach(detail => detail.open = false);
+      window.addEventListener('afterprint', restore, { once: true });
+      window.print();
+    });
+  });
+  // Helpful fallback for offline previews or unavailable image hosts.
+  document.querySelectorAll('.photo-shell img').forEach(image => {
+    const shell = image.closest('.photo-shell');
+    image.addEventListener('error', () => shell.classList.add('photo-unavailable'));
+    image.addEventListener('load', () => shell.classList.remove('photo-unavailable'));
+    if (image.complete && image.naturalWidth === 0) shell.classList.add('photo-unavailable');
+  });
+  // Opening a direct FAQ or credit link should also reveal its content.
+  function revealHashTarget() {
+    let id;
+    try { id = decodeURIComponent(window.location.hash.slice(1)); } catch { return; }
+    const target = document.getElementById(id);
+    if (!target) return;
+    if (target.tagName === 'DETAILS') target.open = true;
+    const parent = target.closest('details');
+    if (parent) parent.open = true;
+  }
+  window.addEventListener('hashchange', revealHashTarget);
+  revealHashTarget();
+})();
+
+</script>
+</body>
+</html>

